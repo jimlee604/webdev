@@ -1,0 +1,15 @@
+.category_button {
+  background-color: #04AA6D; /* Green */
+  border: none;
+  color: white;
+  padding: 14px 32px;
+  margin-right: 14px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 30px;
+}
+
+p {
+  font-size: 30px;
+}
