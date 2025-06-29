@@ -13,3 +13,17 @@
 p {
   font-size: 30px;
 }
+
+.split_container {
+  column-count: 2;
+}
+
+.rounded {
+  border-radius: 5%
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
