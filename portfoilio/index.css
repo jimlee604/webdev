@@ -1,6 +1,7 @@
 .category_button {
-  background-color: #04AA6D; /* Green */
+  background-color: #36bacc; /* Green */
   border: none;
+  border-radius: 4px;
   color: white;
   padding: 14px 32px;
   margin-right: 14px;
