@@ -5,9 +5,27 @@
 .center {
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
-.height30vh {
+.height_10vh {
+  height: 10vh;
+}
+
+.height_30vh {
   height: 30vh;
+}
+
+.start_button
+{
+  font-size: x-large;
+  border-radius: 6px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.start_button:active
+{
+  background-color: gray;
 }
