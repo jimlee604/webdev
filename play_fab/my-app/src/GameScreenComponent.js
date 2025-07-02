@@ -1,17 +1,32 @@
-import logo from './logo.svg';
+import FABCardComponent from "./FABCardComponent";
 
-// Game Page
 const GameScreenComponent = () => {
-  return (
-    <body style={{ backgroundColor: 'green' }}>
-      <div className='height_10vh'></div>
-      <div className='center'>
-        <div>
-          <h1>Welcome to the Game Screen</h1>
-        </div>
-      </div>
-    </body>
-  );
+    return (
+        <body style={{ backgroundColor: '#9c9c9c' }}>
+            <div className='height_10vh'></div>
+            <div className='center'>
+                <div>
+                    <div className="hflex">
+                        <FABCardComponent />
+                        <FABCardComponent />
+                        <FABCardComponent />
+                        <FABCardComponent />
+                    </div>
+                </div>
+            </div>
+                <div className="height_30vh"></div>
+            <div className="center">
+                <div>
+                    <div className="hflex">
+                        <FABCardComponent />
+                        <FABCardComponent />
+                        <FABCardComponent />
+                        <FABCardComponent />
+                    </div>
+                </div>
+            </div>
+        </body>
+    );
 }
 
 export default GameScreenComponent;

@@ -5,6 +5,7 @@
 .center {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .height_10vh {
@@ -15,8 +16,17 @@
   height: 30vh;
 }
 
-.start_button
-{
+.hflex {
+  /* width: 50%; */
+  display: flex;
+  flex-direction: row;
+}
+
+.flexgrow {
+  flex:1
+}
+
+.start_button {
   font-size: x-large;
   border-radius: 6px;
   padding-top: 20px;
@@ -25,7 +35,14 @@
   padding-right: 20px;
 }
 
-.start_button:active
-{
+.start_button:active {
   background-color: gray;
+}
+
+.FABCard {
+  height: 200px;
+  width: 140px;
+  background-color: white;
+  border-radius: 10px;
+  margin-right: 10px;
 }
