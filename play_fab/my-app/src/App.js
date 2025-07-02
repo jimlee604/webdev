@@ -1,10 +1,9 @@
-import logo from './logo.svg';
 import './App.css';
 import GameScreenComponent from './GameScreenComponent.js'
 import HomeScreenComponent from './HomeScreenComponent.js'
 import {
   BrowserRouter,
-  Routes, // instead of "Switch"
+  Routes,
   Route
 } from "react-router-dom";
 

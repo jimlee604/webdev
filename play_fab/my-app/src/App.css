@@ -17,7 +17,6 @@
 }
 
 .hflex {
-  /* width: 50%; */
   display: flex;
   flex-direction: row;
 }
@@ -40,8 +39,8 @@
 }
 
 .FABCard {
-  height: 200px;
-  width: 140px;
+  height: 20vh;
+  width: 20vw;
   background-color: white;
   border-radius: 10px;
   margin-right: 10px;
