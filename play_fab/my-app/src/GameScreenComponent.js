@@ -6,8 +6,8 @@ import { ActiveTurnContext } from "./App";
 import { usePlayerTurn } from "./PlayerTurnContext";
 
 const GameScreenComponent = () => {
-    const {contextValue, updateContext} = usePlayerTurn();
-    const player_turn = contextValue
+    const {value, setValue} = usePlayerTurn();
+    const player_turn = value
     return (
         <body style={{ backgroundColor: '#9c9c9c' }}>
             <div className='height_10vh' />

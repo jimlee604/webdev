@@ -61,14 +61,15 @@
 p.turn_text {
   font-size: 2em;
   margin-left: 10vw;
+  font-weight: bolder;
 }
 
 p.player_turn {
   color:blue;
 }
 
-p.enemy_turn {
-  color:red
+p.opponent_turn {
+  color:red;
 }
 
 .mid_bar {

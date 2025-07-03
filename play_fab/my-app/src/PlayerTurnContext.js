@@ -1,9 +1,5 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 
-const PlayerTurnContext = createContext(true);
-
-export const PlayerTurnProvider = ({children}) => {
-    return <PlayerTurnContext.Provider value={true}>{children}</PlayerTurnContext.Provider>;
-}
+export const PlayerTurnContext = createContext({value: true, setValue:() => {}});
 
 export const usePlayerTurn = () => useContext(PlayerTurnContext);

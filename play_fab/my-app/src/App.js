@@ -6,8 +6,8 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import { createContext } from 'react';
-import { PlayerTurnProvider } from './PlayerTurnContext.js';
+import { useState } from 'react';
+import { PlayerTurnContext } from './PlayerTurnContext.js'
 
 // Home Page
 function App() {
@@ -22,9 +22,12 @@ function App() {
 }
 
 function Root() {
+  const [turnValue, setTurnValue] = useState(true)
   return (
-    <PlayerTurnProvider><App /></PlayerTurnProvider>
-  )
+    <PlayerTurnContext.Provider value={{ value: turnValue, setValue: setTurnValue}}>
+      <App />
+    </PlayerTurnContext.Provider>
+    );
 }
 
 export default Root;
