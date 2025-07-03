@@ -3,9 +3,10 @@ import ActiveTurnComponent from "./ActiveTurnComponent"
 import NextButtonComponent from "./NextButtonComponent"
 import { useContext } from "react";
 import { ActiveTurnContext } from "./App";
+import { usePlayerTurn } from "./PlayerTurnContext";
 
 const GameScreenComponent = () => {
-    const {contextValue, updateContext} = useContext(ActiveTurnContext)
+    const {contextValue, updateContext} = usePlayerTurn();
     const player_turn = contextValue
     return (
         <body style={{ backgroundColor: '#9c9c9c' }}>

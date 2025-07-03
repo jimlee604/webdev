@@ -7,10 +7,9 @@ import {
   Route
 } from "react-router-dom";
 import { createContext } from 'react';
+import { PlayerTurnProvider } from './PlayerTurnContext.js';
 
 // Home Page
-export const ActiveTurnContext = createContext(true);
-
 function App() {
   return (
     <BrowserRouter>
@@ -22,4 +21,10 @@ function App() {
   )
 }
 
-export default App;
+function Root() {
+  return (
+    <PlayerTurnProvider><App /></PlayerTurnProvider>
+  )
+}
+
+export default Root;
