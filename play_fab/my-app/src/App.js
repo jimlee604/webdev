@@ -6,8 +6,11 @@ import {
   Routes,
   Route
 } from "react-router-dom";
+import { createContext } from 'react';
 
 // Home Page
+export const ActiveTurnContext = createContext(true);
+
 function App() {
   return (
     <BrowserRouter>

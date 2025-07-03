@@ -9,7 +9,7 @@ const HomeScreenComponent = () => {
         <div className='height_10vh'></div>
         <div className='center'>
           <div>
-            <h1>Welcome to <b>Flesh and Blood LITE</b></h1>
+            <h1 className='text_align_center'>Welcome to <b>Flesh and Blood LITE</b></h1>
             <div className='height_30vh'></div>
             <div className='center'>
               <button onClick={() => navigate('/game')} class='start_button'>Play Game</button>
