@@ -1,6 +1,7 @@
 import FABCardComponent from "./FABCardComponent";
 import ActiveTurnComponent from "./ActiveTurnComponent"
 import NextButtonComponent from "./NextButtonComponent"
+import InstructionComponent from "./InstructionComponent";
 import { useContext } from "react";
 import { ActiveTurnContext } from "./App";
 import { usePlayerTurn } from "./PlayerTurnContext";
@@ -14,10 +15,10 @@ const GameScreenComponent = () => {
             <div className='center'>
                 <div>
                     <div className="hflex">
-                        <FABCardComponent />
-                        <FABCardComponent />
-                        <FABCardComponent />
-                        <FABCardComponent />
+                        <FABCardComponent playerOwned={false}/>
+                        <FABCardComponent playerOwned={false}/>
+                        <FABCardComponent playerOwned={false}/>
+                        <FABCardComponent playerOwned={false}/>
                     </div>
                 </div>
             </div>
@@ -25,6 +26,7 @@ const GameScreenComponent = () => {
                 <ActiveTurnComponent player_turn = {player_turn}/>
                 <div className="flexgrow" />
                 <div className="vflex">
+                    <InstructionComponent />
                     <div className="flexgrow" />
                     <NextButtonComponent />
                     <div className="flexgrow10" />
@@ -33,10 +35,10 @@ const GameScreenComponent = () => {
             <div className="center">
                 <div>
                     <div className="hflex">
-                        <FABCardComponent />
-                        <FABCardComponent />
-                        <FABCardComponent />
-                        <FABCardComponent />
+                        <FABCardComponent playerOwned={true}/>
+                        <FABCardComponent playerOwned={true}/>
+                        <FABCardComponent playerOwned={true}/>
+                        <FABCardComponent playerOwned={true}/>
                     </div>
                 </div>
             </div>
