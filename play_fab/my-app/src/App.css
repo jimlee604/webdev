@@ -58,6 +58,11 @@
   margin-right: 10px;
 }
 
+.highlight {
+  border-width: 6px;
+  border-color: yellow;
+}
+
 p.turn_text {
   font-size: 2em;
   margin-left: 10vw;

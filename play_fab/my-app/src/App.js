@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import { useState } from 'react';
 import { PlayerTurnContext } from './PlayerTurnContext.js'
+import { SelectedCardContext } from './SelectedCardContext.js'
 
 // Home Page
 function App() {
@@ -23,9 +24,12 @@ function App() {
 
 function Root() {
   const [turnValue, setTurnValue] = useState(true)
+  const [selectedCard, setSelectedCard] = useState(undefined)
   return (
     <PlayerTurnContext.Provider value={{ value: turnValue, setValue: setTurnValue}}>
+      <SelectedCardContext.Provider value={{ value: selectedCard, setValue: setSelectedCard}}>
       <App />
+      </SelectedCardContext.Provider>
     </PlayerTurnContext.Provider>
     );
 }
