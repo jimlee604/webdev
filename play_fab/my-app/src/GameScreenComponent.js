@@ -6,7 +6,7 @@ import { useId } from "react";
 import { usePlayerTurn } from "./PlayerTurnContext";
 
 const GameScreenComponent = () => {
-    const {value, setValue} = usePlayerTurn();
+    const {value} = usePlayerTurn();
     const player_turn = value
     const selectedId = "«r0»"
     return (

@@ -1,5 +1,4 @@
-import { useState} from "react"
-import { useSelectedCard } from "./SelectedCardContext"
+import { useSelectedCard } from "./SelectedCardContext.js"
 
 const FABCardComponent = (props) => {
     const innerComponent = (
@@ -8,7 +7,6 @@ const FABCardComponent = (props) => {
             <p><b>Pitch:</b>1</p>
             <p><b>Attack:</b>4</p>
             <p><b>Block:</b>3</p>
-            <p><b>ID:{props.id}</b></p>
         </div>
     )
 
