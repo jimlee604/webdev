@@ -9,6 +9,7 @@ import {
 import { useState } from 'react';
 import { PlayerTurnContext } from './PlayerTurnContext.js'
 import { SelectedCardContext } from './SelectedCardContext.js'
+import { TurnStepContext } from './TurnStepContext.js'
 
 // Home Page
 function App() {
@@ -24,14 +25,17 @@ function App() {
 
 function Root() {
   const [turnValue, setTurnValue] = useState(true)
-  const [selectedCard, setSelectedCard] = useState(undefined)
+  const [turnStepValue, setTurnStepValue] = useState("Attack")
+  const [selectedCardValue, setSelectedCardValue] = useState(undefined)
   return (
-    <PlayerTurnContext.Provider value={{ value: turnValue, setValue: setTurnValue}}>
-      <SelectedCardContext.Provider value={{ value: selectedCard, setValue: setSelectedCard}}>
-      <App />
-      </SelectedCardContext.Provider>
+    <PlayerTurnContext.Provider value={{ turnValue: turnValue, setTurnValue: setTurnValue }}>
+      <TurnStepContext.Provider value={{ turnStepValue: turnStepValue, setTurnStepValue: setTurnStepValue }}>
+        <SelectedCardContext.Provider value={{ selectedCardValue: selectedCardValue, setSelectedCardValue: setSelectedCardValue }}>
+          <App />
+        </SelectedCardContext.Provider>
+      </TurnStepContext.Provider>
     </PlayerTurnContext.Provider>
-    );
+  );
 }
 
 export default Root;

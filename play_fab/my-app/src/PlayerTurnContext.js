@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
 
-export const PlayerTurnContext = createContext({value: true, setValue:() => {}});
+export const PlayerTurnContext = createContext({turnValue: true, setTurnValue:() => {}});
 
 export const usePlayerTurn = () => useContext(PlayerTurnContext);

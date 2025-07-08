@@ -6,9 +6,8 @@ import { useId } from "react";
 import { usePlayerTurn } from "./PlayerTurnContext";
 
 const GameScreenComponent = () => {
-    const {value} = usePlayerTurn();
-    const player_turn = value
-    const selectedId = "«r0»"
+    const {turnValue} = usePlayerTurn();
+    const selectedId = null;
     return (
         <body style={{ backgroundColor: '#9c9c9c' }}>
             <div className='height_10vh' />
@@ -23,7 +22,7 @@ const GameScreenComponent = () => {
                 </div>
             </div>
             <div className="mid_bar">
-                <ActiveTurnComponent player_turn = {player_turn}/>
+                <ActiveTurnComponent player_turn = {turnValue}/>
                 <div className="flexgrow" />
                 <div className="vflex">
                     <InstructionComponent />

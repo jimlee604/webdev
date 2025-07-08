@@ -1,9 +1,11 @@
+import { useContext } from "react";
 import { usePlayerTurn } from "./PlayerTurnContext";
 
 const NextButtonComponent = (props) => {
-    const {value, setValue} = usePlayerTurn()
+
+    const {turnValue, setTurnValue} = usePlayerTurn()
     const handleClick = () => {
-        setValue(!value)
+        setTurnValue(!turnValue)
     };
 
     return (
