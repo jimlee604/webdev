@@ -63,6 +63,11 @@
   border-color: red;
 }
 
+.highlight_blue {
+  border-width: 6px;
+  border-color: blue;
+}
+
 .highlight_yellow {
   border-width: 6px;
   border-color: yellow;
