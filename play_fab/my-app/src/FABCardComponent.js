@@ -1,4 +1,5 @@
 import { useSelectedCard } from "./SelectedCardContext.js"
+import { useTurnStep } from "./TurnStepContext.js";
 
 const FABCardComponent = (props) => {
     const innerComponent = (
@@ -14,15 +15,20 @@ const FABCardComponent = (props) => {
         const handleClick = () => {
             setSelectedCardValue(props.id)
     };
-    const highlight = props.id === selectedCardValue
+
+    const {turnStepValue} = useTurnStep()
+
+    const highlightRed = (props.id === selectedCardValue && turnStepValue === "Pitch")
+    const highlightYellow = !highlightRed && props.id === selectedCardValue
+    console.log("test")
     
     return (
         props.playerOwned ?
-            (<button class={("FABCard center" + (highlight ? " highlight" : ""))} onClick={handleClick}>
+            (<button className={("FABCard center" + (highlightRed ? " highlight_red" : (highlightYellow ? " highlight_yellow" : "")))} onClick={handleClick}>
                 {innerComponent}
             </button>)
             :
-            (<div class="FABCard center">
+            (<div className="FABCard center">
                 {innerComponent}
             </div>)
     );

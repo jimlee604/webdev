@@ -4,10 +4,13 @@ import NextButtonComponent from "./NextButtonComponent"
 import InstructionComponent from "./InstructionComponent";
 import { useId } from "react";
 import { usePlayerTurn } from "./PlayerTurnContext";
+import { useTurnStep } from "./TurnStepContext";
+import { useSelectedCard } from "./SelectedCardContext";
 
 const GameScreenComponent = () => {
     const {turnValue} = usePlayerTurn();
-    const selectedId = null;
+    const {turnStepValue} = useTurnStep();
+    const {selectedId} = useSelectedCard()
     return (
         <body style={{ backgroundColor: '#9c9c9c' }}>
             <div className='height_10vh' />
@@ -25,9 +28,9 @@ const GameScreenComponent = () => {
                 <ActiveTurnComponent player_turn = {turnValue}/>
                 <div className="flexgrow" />
                 <div className="vflex">
-                    <InstructionComponent />
+                    <InstructionComponent turn_step = {turnStepValue}/>
                     <div className="flexgrow" />
-                    <NextButtonComponent />
+                    <NextButtonComponent selected_id = {selectedId}/>
                     <div className="flexgrow10" />
                 </div>
             </div>

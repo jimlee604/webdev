@@ -58,7 +58,12 @@
   margin-right: 10px;
 }
 
-.highlight {
+.highlight_red {
+  border-width: 6px;
+  border-color: red;
+}
+
+.highlight_yellow {
   border-width: 6px;
   border-color: yellow;
 }
