@@ -5,7 +5,9 @@ import { useSelectedCard } from "./SelectedCardContext.js"
 import { useTurnStep } from "./TurnStepContext.js";
 import { useState } from "react";
 const FABCardComponent = (props) => {
+    console.log(props)
     const card = props.card
+    console.log(card)
     const innerComponent = (
         <div>
             <p><b>Cost:</b>{card.cost} || <b>id:</b>{card.id}</p>
@@ -22,7 +24,7 @@ const FABCardComponent = (props) => {
 
     const { selectedCardValue, setSelectedCardValue } = useSelectedCard()
     const handleClick = () => {
-        if (turnStepValue === "Attack" || turnStepValue === "Attack2") {
+        if (turnStepValue === "Select Attack" || turnStepValue === "Select Attack 2") {
             setSelectedCardValue(card)
             console.log(selectedCardValue)
         } else {
@@ -41,8 +43,8 @@ const FABCardComponent = (props) => {
     };
 
     const highlightRed = (attackingCardValue && attackingCardValue.id === card.id)
-    const highlightBlue = (turnStepValue === "Pitch" || turnStepValue === "Pitch2" || turnStepValue === "Pitch3") && pitchCardsSelectedValue.has(card.id)
-    const highlightYellow = (turnStepValue === "Attack" || turnStepValue === "Attack2") && (selectedCardValue && selectedCardValue.id == card.id)
+    const highlightBlue = (turnStepValue === "Pitch" || turnStepValue === "Pitch 2" || turnStepValue === "Player Attack") && pitchCardsSelectedValue.has(card.id)
+    const highlightYellow = (turnStepValue === "Select Attack" || turnStepValue === "Select Attack 2") && (selectedCardValue && selectedCardValue.id == card.id)
     return (
         card.playerOwned ?
             (<button className={("FABCard center" + (highlightRed ? " highlight_red" : (highlightBlue ? " highlight_blue" : (highlightYellow ? " highlight_yellow" : ""))))} onClick={handleClick}>

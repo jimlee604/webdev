@@ -28,7 +28,7 @@ function App() {
 
 function Root() {
   const [turnValue, setTurnValue] = useState(true)
-  const [turnStepValue, setTurnStepValue] = useState("Attack")
+  const [turnStepValue, setTurnStepValue] = useState("Select Attack")
   const [selectedCardValue, setSelectedCardValue] = useState(undefined)
   const [attackingCardValue, setAttackingCardValue] = useState(undefined)
   const [pitchCardsSelectedValue, setPitchCardsSelectedValue] = useState(new Set())

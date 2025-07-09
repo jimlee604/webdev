@@ -6,22 +6,27 @@ import { useId } from "react";
 import { usePlayerTurn } from "./PlayerTurnContext";
 import { useTurnStep } from "./TurnStepContext";
 import { useSelectedCard } from "./SelectedCardContext";
-import Card  from "./Card"
+import Hand from "./Hand";
 
 const GameScreenComponent = () => {
     const {turnValue} = usePlayerTurn();
     const {turnStepValue} = useTurnStep();
     const {selectedId} = useSelectedCard()
+    const playerHand = new Hand([], true)
+    playerHand.refill()
+    const oppHand = new Hand([], false)
+    oppHand.refill()
+    console.log(oppHand.length)
     return (
         <body style={{ backgroundColor: '#9c9c9c' }}>
             <div className='height_10vh' />
             <div className='center'>
                 <div>
                     <div className="hflex">
-                        <FABCardComponent card={generateCard(useId(), false)}/>
-                        <FABCardComponent card={generateCard(useId(), false)}/>
-                        <FABCardComponent card={generateCard(useId(), false)}/>
-                        <FABCardComponent card={generateCard(useId(), false)}/>
+                        <FABCardComponent card={oppHand.cards[0]}/>
+                        <FABCardComponent card={oppHand.cards[1]}/>
+                        <FABCardComponent card={oppHand.cards[2]}/>
+                        <FABCardComponent card={oppHand.cards[3]}/>
                     </div>
                 </div>
             </div>
@@ -38,19 +43,15 @@ const GameScreenComponent = () => {
             <div className="center">
                 <div>
                     <div className="hflex">
-                        <FABCardComponent card={generateCard(useId(), true)}/>
-                        <FABCardComponent card={generateCard(useId(), true)}/>
-                        <FABCardComponent card={generateCard(useId(), true)}/>
-                        <FABCardComponent card={generateCard(useId(), true)}/>
+                        <FABCardComponent card={playerHand.cards[0]}/>
+                        <FABCardComponent card={playerHand.cards[1]}/>
+                        <FABCardComponent card={playerHand.cards[2]}/>
+                        <FABCardComponent card={playerHand.cards[3]}/>
                     </div>
                 </div>
             </div>
         </body>
     );
-}
-
-function generateCard(id, playerOwned) {
-    return new Card(id, 2, 1, 4, 3, playerOwned)
 }
 
 export default GameScreenComponent;

@@ -12,18 +12,18 @@ const NextButtonComponent = (props) => {
     const {attackingCardValue, setAttackingCardValue} = useAttackingCard()
     const {pitchAmountValue} = usePitchAmount()
     const handleClick = () => {
-        if (turnStepValue === "Attack" || turnStepValue === "Attack2") {
+        if (turnStepValue === "Select Attack" || turnStepValue === "Select Attack 2") {
             if (selectedCardValue == undefined) {
-                setTurnStepValue("Attack2")
+                setTurnStepValue("Select Attack 2")
             } else {
                 setAttackingCardValue(selectedCardValue)
                 setTurnStepValue("Pitch")
             }
-        } else if (turnStepValue === "Pitch" || turnStepValue === "Pitch2" || turnStepValue === "Pitch3") {
+        } else if (turnStepValue === "Pitch" || turnStepValue === "Pitch 2" || turnStepValue === "Attack") {
             if (pitchAmountValue < attackingCardValue.cost) {
-                setTurnStepValue("Pitch2")
+                setTurnStepValue("Pitch 2")
             } else {
-                setTurnStepValue("Pitch3")
+                setTurnStepValue("Player Attack")
             }
         }
         setTurnValue(!turnValue)
