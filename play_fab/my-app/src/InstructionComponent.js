@@ -1,4 +1,7 @@
+import { useAttackingCard } from "./AttackingCardContext"
+
 const InstructionComponent = (props) => {
+    const {attackingCardValue} = useAttackingCard()
     switch (props.turn_step) {
         case "Attack":
             return (
@@ -11,6 +14,14 @@ const InstructionComponent = (props) => {
         case "Pitch":
             return (
                 <p>Please select cards to pay 2 resources.</p>
+            )
+        case "Pitch2":
+            return (
+                <p>Not enough resources pitched.<br/> Please select cards to pay {attackingCardValue.cost} resources.</p>
+            )
+        case "Pitch3":
+            return (
+                <p>Successfully launched attack. </p>
             )
         default:
             return (

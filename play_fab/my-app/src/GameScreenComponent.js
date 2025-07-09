@@ -6,6 +6,7 @@ import { useId } from "react";
 import { usePlayerTurn } from "./PlayerTurnContext";
 import { useTurnStep } from "./TurnStepContext";
 import { useSelectedCard } from "./SelectedCardContext";
+import Card  from "./Card"
 
 const GameScreenComponent = () => {
     const {turnValue} = usePlayerTurn();
@@ -17,10 +18,10 @@ const GameScreenComponent = () => {
             <div className='center'>
                 <div>
                     <div className="hflex">
-                        <FABCardComponent id={useId()} selectedId={selectedId} playerOwned={false}/>
-                        <FABCardComponent id={useId()} selectedId={selectedId} playerOwned={false}/>
-                        <FABCardComponent id={useId()} selectedId={selectedId} playerOwned={false}/>
-                        <FABCardComponent id={useId()} selectedId={selectedId} playerOwned={false}/>
+                        <FABCardComponent card={generateCard(useId(), false)}/>
+                        <FABCardComponent card={generateCard(useId(), false)}/>
+                        <FABCardComponent card={generateCard(useId(), false)}/>
+                        <FABCardComponent card={generateCard(useId(), false)}/>
                     </div>
                 </div>
             </div>
@@ -37,15 +38,19 @@ const GameScreenComponent = () => {
             <div className="center">
                 <div>
                     <div className="hflex">
-                        <FABCardComponent id={useId()} selectedId={selectedId} playerOwned={true}/>
-                        <FABCardComponent id={useId()} selectedId={selectedId} playerOwned={true}/>
-                        <FABCardComponent id={useId()} selectedId={selectedId} playerOwned={true}/>
-                        <FABCardComponent id={useId()} selectedId={selectedId} playerOwned={true}/>
+                        <FABCardComponent card={generateCard(useId(), true)}/>
+                        <FABCardComponent card={generateCard(useId(), true)}/>
+                        <FABCardComponent card={generateCard(useId(), true)}/>
+                        <FABCardComponent card={generateCard(useId(), true)}/>
                     </div>
                 </div>
             </div>
         </body>
     );
+}
+
+function generateCard(id, playerOwned) {
+    return new Card(id, 2, 1, 4, 3, playerOwned)
 }
 
 export default GameScreenComponent;

@@ -12,6 +12,7 @@ import { SelectedCardContext } from './SelectedCardContext.js'
 import { TurnStepContext } from './TurnStepContext.js'
 import { AttackingCardContext } from './AttackingCardContext.js';
 import { PitchCardsSelectedContext } from './PitchCardsSelectedContext.js';
+import { PitchAmountContext } from './PitchAmountContext'
 
 // Home Page
 function App() {
@@ -31,13 +32,16 @@ function Root() {
   const [selectedCardValue, setSelectedCardValue] = useState(undefined)
   const [attackingCardValue, setAttackingCardValue] = useState(undefined)
   const [pitchCardsSelectedValue, setPitchCardsSelectedValue] = useState(new Set())
+  const [pitchAmountValue, setPitchAmountValue] = useState(0)
   return (
     <PlayerTurnContext.Provider value={{ turnValue: turnValue, setTurnValue: setTurnValue }}>
       <TurnStepContext.Provider value={{ turnStepValue: turnStepValue, setTurnStepValue: setTurnStepValue }}>
         <SelectedCardContext.Provider value={{ selectedCardValue: selectedCardValue, setSelectedCardValue: setSelectedCardValue }}>
           <AttackingCardContext.Provider value={{ attackingCardValue: attackingCardValue, setAttackingCardValue: setAttackingCardValue }}>
             <PitchCardsSelectedContext.Provider value={{ pitchCardsSelectedValue: pitchCardsSelectedValue, setPitchCardsSelectedValue: setPitchCardsSelectedValue}}>
+              <PitchAmountContext.Provider value={{pitchAmountValue: pitchAmountValue, setPitchAmountValue: setPitchAmountValue}}>
             <App />
+            </PitchAmountContext.Provider>
             </PitchCardsSelectedContext.Provider>
           </AttackingCardContext.Provider>
         </SelectedCardContext.Provider>
