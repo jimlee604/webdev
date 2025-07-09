@@ -13,6 +13,9 @@ import { TurnStepContext } from './TurnStepContext.js'
 import { AttackingCardContext } from './AttackingCardContext.js';
 import { PitchCardsSelectedContext } from './PitchCardsSelectedContext.js';
 import { PitchAmountContext } from './PitchAmountContext'
+import { PlayerHandContext } from './PlayerHandContext.js';
+import { OpponentHandContext } from './OpponentHandContext.js';
+import Hand from "./Hand";
 
 // Home Page
 function App() {
@@ -33,6 +36,12 @@ function Root() {
   const [attackingCardValue, setAttackingCardValue] = useState(undefined)
   const [pitchCardsSelectedValue, setPitchCardsSelectedValue] = useState(new Set())
   const [pitchAmountValue, setPitchAmountValue] = useState(0)
+  const playerHand = new Hand([], true)
+  playerHand.refill();
+  const oppHand = new Hand([], true)
+  oppHand.refill();  
+  const [playerHandValue, setPlayerHandValue] = useState(playerHand)
+  const [opponentHandValue, setOpponentHandValue] = useState(oppHand)
   return (
     <PlayerTurnContext.Provider value={{ turnValue: turnValue, setTurnValue: setTurnValue }}>
       <TurnStepContext.Provider value={{ turnStepValue: turnStepValue, setTurnStepValue: setTurnStepValue }}>
@@ -40,7 +49,11 @@ function Root() {
           <AttackingCardContext.Provider value={{ attackingCardValue: attackingCardValue, setAttackingCardValue: setAttackingCardValue }}>
             <PitchCardsSelectedContext.Provider value={{ pitchCardsSelectedValue: pitchCardsSelectedValue, setPitchCardsSelectedValue: setPitchCardsSelectedValue}}>
               <PitchAmountContext.Provider value={{pitchAmountValue: pitchAmountValue, setPitchAmountValue: setPitchAmountValue}}>
+                <PlayerHandContext.Provider value={{playerHandValue: playerHandValue, setPlayerHandValue, setPlayerHandValue}}>
+                  <OpponentHandContext.Provider value={{opponentHandValue: opponentHandValue, setOpponentHandValue: setOpponentHandValue}}>
             <App />
+            </OpponentHandContext.Provider>
+            </PlayerHandContext.Provider>
             </PitchAmountContext.Provider>
             </PitchCardsSelectedContext.Provider>
           </AttackingCardContext.Provider>
