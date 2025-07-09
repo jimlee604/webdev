@@ -11,42 +11,41 @@ import { usePlayerHand } from "./PlayerHandContext";
 import { useOpponentHand } from "./OpponentHandContext";
 
 const GameScreenComponent = () => {
-    const {turnValue} = usePlayerTurn();
-    const {turnStepValue} = useTurnStep();
-    const {selectedId} = useSelectedCard();
-
-    const {playerHandValue, setPlayerHandValue} = usePlayerHand();
-    const {opponentHandValue, setOpponentHandValue} = useOpponentHand();
+    const { turnValue } = usePlayerTurn();
+    const { turnStepValue } = useTurnStep();
+    const { selectedId } = useSelectedCard();
+    const { playerHandValue, setPlayerHandValue } = usePlayerHand();
+    const { opponentHandValue, setOpponentHandValue } = useOpponentHand();
     return (
         <body style={{ backgroundColor: '#9c9c9c' }}>
             <div className='height_10vh' />
             <div className='center'>
                 <div>
                     <div className="hflex">
-                        <FABCardComponent card={opponentHandValue.cards[0]}/>
-                        <FABCardComponent card={opponentHandValue.cards[1]}/>
-                        <FABCardComponent card={opponentHandValue.cards[2]}/>
-                        <FABCardComponent card={opponentHandValue.cards[3]}/>
+                        {(opponentHandValue.cards.length > 0) && <FABCardComponent card={opponentHandValue.cards[0]} />}
+                        {(opponentHandValue.cards.length > 1) && <FABCardComponent card={opponentHandValue.cards[1]} />}
+                        {(opponentHandValue.cards.length > 2) && <FABCardComponent card={opponentHandValue.cards[2]} />}
+                        {(opponentHandValue.cards.length > 3) && <FABCardComponent card={opponentHandValue.cards[3]} />}
                     </div>
                 </div>
             </div>
             <div className="mid_bar">
-                <ActiveTurnComponent player_turn = {turnValue}/>
+                <ActiveTurnComponent player_turn={turnValue} />
                 <div className="flexgrow" />
                 <div className="vflex">
-                    <InstructionComponent turn_step = {turnStepValue}/>
+                    <InstructionComponent turn_step={turnStepValue} />
                     <div className="flexgrow" />
-                    <NextButtonComponent selected_id = {selectedId}/>
+                    <NextButtonComponent selected_id={selectedId} />
                     <div className="flexgrow10" />
                 </div>
             </div>
             <div className="center">
                 <div>
                     <div className="hflex">
-                        <FABCardComponent card={playerHandValue.cards[0]}/>
-                        <FABCardComponent card={playerHandValue.cards[1]}/>
-                        <FABCardComponent card={playerHandValue.cards[2]}/>
-                        <FABCardComponent card={playerHandValue.cards[3]}/>
+                        {(playerHandValue.cards.length > 0) && <FABCardComponent card={playerHandValue.cards[0]} />}
+                        {(playerHandValue.cards.length > 1) && <FABCardComponent card={playerHandValue.cards[1]} />}
+                        {(playerHandValue.cards.length > 2) && <FABCardComponent card={playerHandValue.cards[2]} />}
+                        {(playerHandValue.cards.length > 3) && <FABCardComponent card={playerHandValue.cards[3]} />}
                     </div>
                 </div>
             </div>

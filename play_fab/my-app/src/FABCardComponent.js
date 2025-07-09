@@ -5,12 +5,13 @@ import { useSelectedCard } from "./SelectedCardContext.js"
 import { useTurnStep } from "./TurnStepContext.js";
 import { useState } from "react";
 const FABCardComponent = (props) => {
-    console.log(props)
     const card = props.card
-    console.log(card)
     const innerComponent = (
         <div>
-            <p><b>Cost:</b>{card.cost} || <b>id:</b>{card.id}</p>
+            <p>
+                <b>Cost:</b>{card.cost}
+                 {/* || <b>id:</b>{card.id} */}
+                 </p>
             <p><b>Pitch:</b>{card.pitch}</p>
             <p><b>Attack:</b>{card.attack}</p>
             <p><b>Block:</b>{card.block}</p>
@@ -26,24 +27,25 @@ const FABCardComponent = (props) => {
     const handleClick = () => {
         if (turnStepValue === "Select Attack" || turnStepValue === "Select Attack 2") {
             setSelectedCardValue(card)
-            console.log(selectedCardValue)
+            console.log(card)
         } else {
             let nextPitchValue = new Set(pitchCardsSelectedValue)
-            if (attackingCardValue && attackingCardValue.id !== card.id) {
-                if (pitchCardsSelectedValue.has(card.id)) {
-                    nextPitchValue.delete(card.id)
+            console.log(attackingCardValue)
+            console.log(card)
+            if (attackingCardValue && attackingCardValue !== card) {
+                if (pitchCardsSelectedValue.has(card)) {
+                    nextPitchValue.delete(card)
                     setPitchAmountValue(pitchAmountValue - card.pitch)
                 } else {
-                    nextPitchValue.add(card.id)
+                    nextPitchValue.add(card)
                     setPitchAmountValue(pitchAmountValue + card.pitch)
                 }
                 setPitchCardsSelectedValue(nextPitchValue)
             }
         }
     };
-
-    const highlightRed = (attackingCardValue && attackingCardValue.id === card.id)
-    const highlightBlue = (turnStepValue === "Pitch" || turnStepValue === "Pitch 2" || turnStepValue === "Player Attack") && pitchCardsSelectedValue.has(card.id)
+    const highlightRed = (attackingCardValue && attackingCardValue === card)
+    const highlightBlue = (turnStepValue === "Pitch" || turnStepValue === "Pitch 2" || turnStepValue === "Player Attack") && pitchCardsSelectedValue.has(card)
     const highlightYellow = (turnStepValue === "Select Attack" || turnStepValue === "Select Attack 2") && (selectedCardValue && selectedCardValue.id == card.id)
     return (
         card.playerOwned ?

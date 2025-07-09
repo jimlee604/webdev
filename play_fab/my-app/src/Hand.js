@@ -6,7 +6,6 @@ function randInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-
 class Hand {
 
     constructor(cards, player) {
@@ -20,7 +19,8 @@ class Hand {
 
     refill() {
         while (this.cards.length < 4) {
-            this.cards.push(new Card(crypto.randomUUID(), randInt(0,3), randInt(1,3), randInt(2,5), randInt(2,3), this.player))
+            // clean up code to static vars
+            this.cards.push(new Card(crypto.randomUUID(), randInt(1,3), randInt(1,3), randInt(2,5), randInt(2,3), this.player))
         }
     }
 }

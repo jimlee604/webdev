@@ -4,29 +4,47 @@ import { useTurnStep } from "./TurnStepContext";
 import { useAttackingCard } from "./AttackingCardContext";
 import { useSelectedCard } from "./SelectedCardContext";
 import { usePitchAmount } from "./PitchAmountContext";
+import { usePitchCardsSelected } from "./PitchCardsSelectedContext";
+import { usePlayerHand } from "./PlayerHandContext";
+import Hand from "./Hand";
 
 const NextButtonComponent = (props) => {
-    const {selectedCardValue} = useSelectedCard()
-    const {turnValue, setTurnValue} = usePlayerTurn()
-    const {turnStepValue, setTurnStepValue} = useTurnStep()
-    const {attackingCardValue, setAttackingCardValue} = useAttackingCard()
-    const {pitchAmountValue} = usePitchAmount()
+    const { selectedCardValue } = useSelectedCard()
+    const { turnValue, setTurnValue } = usePlayerTurn()
+    const { turnStepValue, setTurnStepValue } = useTurnStep()
+    const { attackingCardValue, setAttackingCardValue } = useAttackingCard();
+    const { pitchCardsSelectedValue } = usePitchCardsSelected()
+    const { pitchAmountValue } = usePitchAmount()
+    const { playerHandValue, setPlayerHandValue } = usePlayerHand()
     const handleClick = () => {
-        if (turnStepValue === "Select Attack" || turnStepValue === "Select Attack 2") {
-            if (selectedCardValue == undefined) {
-                setTurnStepValue("Select Attack 2")
-            } else {
-                setAttackingCardValue(selectedCardValue)
-                setTurnStepValue("Pitch")
-            }
-        } else if (turnStepValue === "Pitch" || turnStepValue === "Pitch 2" || turnStepValue === "Attack") {
-            if (pitchAmountValue < attackingCardValue.cost) {
-                setTurnStepValue("Pitch 2")
-            } else {
-                setTurnStepValue("Player Attack")
-            }
+        switch (turnStepValue) {
+            case "Select Attack":
+            case "Select Attack 2":
+                if (selectedCardValue == undefined) {
+                    setTurnStepValue("Select Attack 2")
+                } else {
+                    setAttackingCardValue(selectedCardValue)
+                    setTurnStepValue("Pitch")
+                }
+                break;
+            case "Pitch":
+            case "Pitch 2":
+                if (pitchAmountValue < attackingCardValue.cost) {
+                    setTurnStepValue("Pitch 2")
+                } else {
+                    setTurnStepValue("Player Attack")
+                    const newPlayerHand = new Hand(playerHandValue.cards, true);
+                    for (const pitchedCard of pitchCardsSelectedValue) {
+                        newPlayerHand.cards.pop(pitchedCard)
+                    }
+                    setPlayerHandValue(newPlayerHand)
+                }
+                break;
+            case "Player Attack":
+                break;
+            default:
+                return
         }
-        setTurnValue(!turnValue)
     };
 
     return (
