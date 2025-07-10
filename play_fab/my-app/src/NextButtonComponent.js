@@ -7,6 +7,7 @@ import { usePitchAmount } from "./PitchAmountContext";
 import { usePitchCardsSelected } from "./PitchCardsSelectedContext";
 import { usePlayerHand } from "./PlayerHandContext";
 import Hand from "./Hand";
+import { TurnStep } from "./TurnStep.js"
 
 const NextButtonComponent = (props) => {
     const { selectedCardValue } = useSelectedCard()
@@ -18,21 +19,21 @@ const NextButtonComponent = (props) => {
     const { playerHandValue, setPlayerHandValue } = usePlayerHand()
     const handleClick = () => {
         switch (turnStepValue) {
-            case "Select Attack":
-            case "Select Attack 2":
+            case TurnStep.SELECT_ATTACK:
+            case TurnStep.SELECT_ATTACK_ERROR:
                 if (selectedCardValue == undefined) {
-                    setTurnStepValue("Select Attack 2")
+                    setTurnStepValue(TurnStep.SELECT_ATTACK)
                 } else {
                     setAttackingCardValue(selectedCardValue)
-                    setTurnStepValue("Pitch")
+                    setTurnStepValue(TurnStep.PITCH)
                 }
                 break;
-            case "Pitch":
-            case "Pitch 2":
+            case TurnStep.PITCH:
+            case TurnStep.PITCH_ERROR:
                 if (pitchAmountValue < attackingCardValue.cost) {
-                    setTurnStepValue("Pitch 2")
+                    setTurnStepValue(TurnStep.PITCH_ERROR)
                 } else {
-                    setTurnStepValue("Player Attack")
+                    setTurnStepValue(TurnStep.PLAYER_ATTACK)
                     const newPlayerHand = new Hand(playerHandValue.cards, true);
                     for (const pitchedCard of pitchCardsSelectedValue) {
                         newPlayerHand.cards.pop(pitchedCard)
@@ -40,7 +41,7 @@ const NextButtonComponent = (props) => {
                     setPlayerHandValue(newPlayerHand)
                 }
                 break;
-            case "Player Attack":
+            case TurnStep.PLAYER_ATTACK:
                 break;
             default:
                 return

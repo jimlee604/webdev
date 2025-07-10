@@ -16,6 +16,7 @@ import { PitchAmountContext } from './PitchAmountContext'
 import { PlayerHandContext } from './PlayerHandContext.js';
 import { OpponentHandContext } from './OpponentHandContext.js';
 import Hand from "./Hand";
+import { TurnStep } from "./TurnStep.js"
 
 // Home Page
 function App() {
@@ -31,7 +32,7 @@ function App() {
 
 function Root() {
   const [turnValue, setTurnValue] = useState(true)
-  const [turnStepValue, setTurnStepValue] = useState("Select Attack")
+  const [turnStepValue, setTurnStepValue] = useState(TurnStep.SELECT_ATTACK)
   const [selectedCardValue, setSelectedCardValue] = useState(undefined)
   const [attackingCardValue, setAttackingCardValue] = useState(undefined)
   const [pitchCardsSelectedValue, setPitchCardsSelectedValue] = useState(new Set())

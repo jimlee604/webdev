@@ -1,9 +1,10 @@
-import { useAttackingCard } from "./AttackingCardContext.js";
-import { usePitchAmount } from "./PitchAmountContext.js";
-import { usePitchCardsSelected } from "./PitchCardsSelectedContext.js";
-import { useSelectedCard } from "./SelectedCardContext.js"
-import { useTurnStep } from "./TurnStepContext.js";
-import { useState } from "react";
+import { useAttackingCard } from "./AttackingCardContext";
+import { usePitchAmount } from "./PitchAmountContext";
+import { usePitchCardsSelected } from "./PitchCardsSelectedContext";
+import { useSelectedCard } from "./SelectedCardContext"
+import { useTurnStep } from "./TurnStepContext";
+import { TurnStep } from "./TurnStep"
+
 const FABCardComponent = (props) => {
     const card = props.card
     const innerComponent = (
@@ -26,13 +27,13 @@ const FABCardComponent = (props) => {
     const { selectedCardValue, setSelectedCardValue } = useSelectedCard()
     const handleClick = () => {
         switch (turnStepValue) {
-            case "Select Attack":
-            case "Select Attack 2":
+            case TurnStep.SELECT_ATTACK:
+            case TurnStep.SELECT_ATTACK_ERROR:
                 setSelectedCardValue(card)
                 console.log(card)
                 break;
-            case "Pitch":
-            case "Pitch 2":
+            case TurnStep.PITCH:
+            case TurnStep.PITCH_ERROR:
                 let nextPitchValue = new Set(pitchCardsSelectedValue)
                 console.log(attackingCardValue)
                 console.log(card)
@@ -47,25 +48,38 @@ const FABCardComponent = (props) => {
                     setPitchCardsSelectedValue(nextPitchValue)
                 }
                 break;
-            case "PlayerAttack":
+            case TurnStep.PLAYER_ATTACK:
                 break;
             default:
                 return;
         }
-};
-const highlightRed = (attackingCardValue && attackingCardValue === card)
-const highlightBlue = (turnStepValue === "Pitch" || turnStepValue === "Pitch 2" || turnStepValue === "Player Attack") && pitchCardsSelectedValue.has(card)
-const highlightYellow = (turnStepValue === "Select Attack" || turnStepValue === "Select Attack 2") && (selectedCardValue && selectedCardValue.id == card.id)
-return (
-    card.playerOwned ?
-        (<button className={("FABCard center" + (highlightRed ? " highlight_red" : (highlightBlue ? " highlight_blue" : (highlightYellow ? " highlight_yellow" : ""))))} onClick={handleClick}>
+    };
+
+    let highlightColor;
+    switch (turnStepValue) {
+        case TurnStep.SELECT_ATTACK:
+        case TurnStep.SELECT_ATTACK_ERROR:
+            if (selectedCardValue && selectedCardValue.id == card.id) {
+                highlightColor = "highlight_yellow"
+            }
+        case TurnStep.PITCH:
+        case TurnStep.PITCH_ERROR:
+            if (attackingCardValue && attackingCardValue === card) {
+                highlightColor = "highlight_red"
+            } else if (pitchCardsSelectedValue.has(card)) {
+                highlightColor = "highlight_blue"
+            }
+        case TurnStep.PLAYER_ATTACK:
+            if (attackingCardValue && attackingCardValue === card) {
+                highlightColor = "highlight_red"
+            }
+    }
+
+    return (
+        <button className={"FABCard center" + (highlightColor ? " " + highlightColor : "")} onClick={handleClick}>
             {innerComponent}
-        </button>)
-        :
-        (<div className="FABCard center">
-            {innerComponent}
-        </div>)
-);
+        </button>
+    );
 }
 
 export default FABCardComponent;
