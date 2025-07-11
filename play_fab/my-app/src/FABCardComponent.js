@@ -4,6 +4,7 @@ import { usePitchCardsSelected } from "./PitchCardsSelectedContext";
 import { useSelectedCard } from "./SelectedCardContext"
 import { useTurnStep } from "./TurnStepContext";
 import { TurnStep } from "./TurnStep"
+import { useOpponentBlocks } from "./OpponentBlocksContext";
 
 const FABCardComponent = (props) => {
     const card = props.card
@@ -23,21 +24,19 @@ const FABCardComponent = (props) => {
     const { pitchCardsSelectedValue, setPitchCardsSelectedValue } = usePitchCardsSelected()
     const { attackingCardValue } = useAttackingCard()
     const { pitchAmountValue, setPitchAmountValue } = usePitchAmount()
-
     const { selectedCardValue, setSelectedCardValue } = useSelectedCard()
+    const { opponentBlocksValue } = useOpponentBlocks()
+
     const handleClick = () => {
         switch (turnStepValue) {
             case TurnStep.SELECT_ATTACK:
             case TurnStep.SELECT_ATTACK_ERROR:
                 setSelectedCardValue(card)
-                console.log(card)
                 break;
             case TurnStep.PITCH:
             case TurnStep.PITCH_ERROR:
                 let nextPitchValue = new Set(pitchCardsSelectedValue)
-                console.log(attackingCardValue)
-                console.log(card)
-                if (attackingCardValue && attackingCardValue !== card) {
+                if (attackingCardValue && attackingCardValue.id != card.id) {
                     if (pitchCardsSelectedValue.has(card)) {
                         nextPitchValue.delete(card)
                         setPitchAmountValue(pitchAmountValue - card.pitch)
@@ -50,8 +49,8 @@ const FABCardComponent = (props) => {
                 break;
             case TurnStep.PLAYER_ATTACK:
                 break;
-            default:
-                return;
+            case TurnStep.OPPONENT_BLOCK:
+                break;
         }
     };
 
@@ -72,6 +71,10 @@ const FABCardComponent = (props) => {
         case TurnStep.PLAYER_ATTACK:
             if (attackingCardValue && attackingCardValue === card) {
                 highlightColor = "highlight_red"
+            }
+        case TurnStep.OPPONENT_BLOCK:
+            if (opponentBlocksValue.has(card)) {
+                highlightColor = "highlight_gray"
             }
     }
 

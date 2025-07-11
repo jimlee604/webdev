@@ -1,3 +1,7 @@
+:root {
+  --card-border-radius: 6px;
+}
+
 .App {
   text-align: center;
 }
@@ -59,18 +63,23 @@
 }
 
 .highlight_red {
-  border-width: 6px;
+  border-width: var(--card-border-radius);
   border-color: red;
 }
 
 .highlight_blue {
-  border-width: 6px;
+  border-width: var(--card-border-radius);
   border-color: blue;
 }
 
 .highlight_yellow {
-  border-width: 6px;
+  border-width: var(--card-border-radius);
   border-color: yellow;
+}
+
+.highlight_gray {
+  border-width: var(--card-border-radius);
+  border-color: darkslategray;
 }
 
 p.turn_text {

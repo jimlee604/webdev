@@ -20,7 +20,7 @@ class Hand {
     refill() {
         while (this.cards.length < 4) {
             // clean up code to static vars
-            this.cards.push(new Card(crypto.randomUUID(), randInt(1,3), randInt(1,3), randInt(2,5), randInt(2,3), this.player))
+            this.cards.push(new Card(crypto.randomUUID(), randInt(1,3), randInt(1,3), randInt(2,9), randInt(2,3), this.player))
         }
     }
 }

@@ -15,6 +15,7 @@ import { PitchCardsSelectedContext } from './PitchCardsSelectedContext.js';
 import { PitchAmountContext } from './PitchAmountContext'
 import { PlayerHandContext } from './PlayerHandContext.js';
 import { OpponentHandContext } from './OpponentHandContext.js';
+import { OpponentBlocksContext } from './OpponentBlocksContext.js';
 import Hand from "./Hand";
 import { TurnStep } from "./TurnStep.js"
 
@@ -40,22 +41,25 @@ function Root() {
   const playerHand = new Hand([], true)
   playerHand.refill();
   const oppHand = new Hand([], true)
-  oppHand.refill();  
+  oppHand.refill();
   const [playerHandValue, setPlayerHandValue] = useState(playerHand)
   const [opponentHandValue, setOpponentHandValue] = useState(oppHand)
+  const [opponentBlocksValue, setOpponentBlocksValue] = useState(new Set())
   return (
     <PlayerTurnContext.Provider value={{ turnValue: turnValue, setTurnValue: setTurnValue }}>
       <TurnStepContext.Provider value={{ turnStepValue: turnStepValue, setTurnStepValue: setTurnStepValue }}>
         <SelectedCardContext.Provider value={{ selectedCardValue: selectedCardValue, setSelectedCardValue: setSelectedCardValue }}>
           <AttackingCardContext.Provider value={{ attackingCardValue: attackingCardValue, setAttackingCardValue: setAttackingCardValue }}>
-            <PitchCardsSelectedContext.Provider value={{ pitchCardsSelectedValue: pitchCardsSelectedValue, setPitchCardsSelectedValue: setPitchCardsSelectedValue}}>
-              <PitchAmountContext.Provider value={{pitchAmountValue: pitchAmountValue, setPitchAmountValue: setPitchAmountValue}}>
-                <PlayerHandContext.Provider value={{playerHandValue: playerHandValue, setPlayerHandValue, setPlayerHandValue}}>
-                  <OpponentHandContext.Provider value={{opponentHandValue: opponentHandValue, setOpponentHandValue: setOpponentHandValue}}>
-            <App />
-            </OpponentHandContext.Provider>
-            </PlayerHandContext.Provider>
-            </PitchAmountContext.Provider>
+            <PitchCardsSelectedContext.Provider value={{ pitchCardsSelectedValue: pitchCardsSelectedValue, setPitchCardsSelectedValue: setPitchCardsSelectedValue }}>
+              <PitchAmountContext.Provider value={{ pitchAmountValue: pitchAmountValue, setPitchAmountValue: setPitchAmountValue }}>
+                <PlayerHandContext.Provider value={{ playerHandValue: playerHandValue, setPlayerHandValue, setPlayerHandValue }}>
+                  <OpponentHandContext.Provider value={{ opponentHandValue: opponentHandValue, setOpponentHandValue: setOpponentHandValue }}>
+                    <OpponentBlocksContext.Provider value={{ opponentBlocksValue: opponentBlocksValue, setOpponentBlocksValue: setOpponentBlocksValue }}>
+                      <App />
+                    </OpponentBlocksContext.Provider>
+                  </OpponentHandContext.Provider>
+                </PlayerHandContext.Provider>
+              </PitchAmountContext.Provider>
             </PitchCardsSelectedContext.Provider>
           </AttackingCardContext.Provider>
         </SelectedCardContext.Provider>
