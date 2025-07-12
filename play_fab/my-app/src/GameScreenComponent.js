@@ -18,7 +18,7 @@ const GameScreenComponent = () => {
     const { opponentHandValue, setOpponentHandValue } = useOpponentHand();
     return (
         <div className="full-background-container" style={{ backgroundColor: '#9c9c9c' }}>
-            <div className='height_10vh' />
+            <div className='height_5vh' />
             <div className='center'>
                 <div>
                     <div className="hflex">

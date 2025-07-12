@@ -30,7 +30,10 @@ const FABCardComponent = (props) => {
         switch (turnStepValue) {
             case TurnStep.SELECT_ATTACK:
             case TurnStep.SELECT_ATTACK_ERROR:
-                setSelectedCardValue(card)
+                console.log(card)
+                if (card.playerOwned) {
+                    setSelectedCardValue(card)
+                }
                 break;
             case TurnStep.PITCH:
             case TurnStep.PITCH_ERROR:
@@ -78,7 +81,7 @@ const FABCardComponent = (props) => {
     }
 
     return (
-        <button className={"FABCard center" + (highlightColor ? " " + highlightColor : "")} onClick={handleClick}>
+        <button className={"FABCard center height_10vh" + (highlightColor ? " " + highlightColor : "")} onClick={handleClick}>
             {innerComponent}
         </button>
     );

@@ -40,7 +40,7 @@ function Root() {
   const [pitchAmountValue, setPitchAmountValue] = useState(0)
   const playerHand = new Hand([], true)
   playerHand.refill();
-  const oppHand = new Hand([], true)
+  const oppHand = new Hand([], false)
   oppHand.refill();
   const [playerHandValue, setPlayerHandValue] = useState(playerHand)
   const [opponentHandValue, setOpponentHandValue] = useState(oppHand)
