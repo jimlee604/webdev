@@ -1,23 +1,25 @@
 import './App.css';
-import GameScreenComponent from './GameScreenComponent.js'
-import HomeScreenComponent from './HomeScreenComponent.js'
+import GameScreenComponent from './GameScreenComponent'
+import HomeScreenComponent from './HomeScreenComponent'
 import {
   BrowserRouter,
   Routes,
   Route
 } from "react-router-dom";
 import { useState } from 'react';
-import { PlayerTurnContext } from './PlayerTurnContext.js'
-import { SelectedCardContext } from './SelectedCardContext.js'
-import { TurnStepContext } from './TurnStepContext.js'
-import { AttackingCardContext } from './AttackingCardContext.js';
-import { PitchCardsSelectedContext } from './PitchCardsSelectedContext.js';
+import { PlayerTurnContext } from './PlayerTurnContext'
+import { SelectedCardContext } from './SelectedCardContext'
+import { TurnStepContext } from './TurnStepContext'
+import { AttackingCardContext } from './AttackingCardContext';
+import { PitchCardsSelectedContext } from './PitchCardsSelectedContext';
 import { PitchAmountContext } from './PitchAmountContext'
-import { PlayerHandContext } from './PlayerHandContext.js';
-import { OpponentHandContext } from './OpponentHandContext.js';
-import { OpponentBlocksContext } from './OpponentBlocksContext.js';
+import { PlayerHandContext } from './PlayerHandContext';
+import { OpponentHandContext } from './OpponentHandContext';
+import { OpponentBlocksContext } from './OpponentBlocksContext';
 import Hand from "./Hand";
 import { TurnStep } from "./TurnStep.js"
+import { PlayerLifeContext } from './PlayerLifeContext';
+import { OpponentLifeContext } from './OpponentLifeContext'
 
 // Home Page
 function App() {
@@ -45,6 +47,8 @@ function Root() {
   const [playerHandValue, setPlayerHandValue] = useState(playerHand)
   const [opponentHandValue, setOpponentHandValue] = useState(oppHand)
   const [opponentBlocksValue, setOpponentBlocksValue] = useState(new Set())
+  const [playerLifeValue, setPlayerLifeValue] = useState(40)
+  const [opponentLifeValue, setOpponentLifeValue] = useState(40)
   return (
     <PlayerTurnContext.Provider value={{ turnValue: turnValue, setTurnValue: setTurnValue }}>
       <TurnStepContext.Provider value={{ turnStepValue: turnStepValue, setTurnStepValue: setTurnStepValue }}>
@@ -55,7 +59,11 @@ function Root() {
                 <PlayerHandContext.Provider value={{ playerHandValue: playerHandValue, setPlayerHandValue, setPlayerHandValue }}>
                   <OpponentHandContext.Provider value={{ opponentHandValue: opponentHandValue, setOpponentHandValue: setOpponentHandValue }}>
                     <OpponentBlocksContext.Provider value={{ opponentBlocksValue: opponentBlocksValue, setOpponentBlocksValue: setOpponentBlocksValue }}>
-                      <App />
+                      <PlayerLifeContext.Provider value={{ playerLifeValue: playerLifeValue, setPlayerLifeValue: setPlayerLifeValue }}>
+                        <OpponentLifeContext.Provider value={{ opponentLifeValue: opponentLifeValue, setOpponentLifeValue: setOpponentLifeValue }}>
+                          <App />
+                        </OpponentLifeContext.Provider>
+                      </PlayerLifeContext.Provider>
                     </OpponentBlocksContext.Provider>
                   </OpponentHandContext.Provider>
                 </PlayerHandContext.Provider>

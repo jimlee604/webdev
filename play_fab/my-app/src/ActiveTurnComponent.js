@@ -1,9 +1,15 @@
+import { useOpponentLife } from "./OpponentLifeContext";
+import { usePlayerLife } from "./PlayerLifeContext";
+
 const ActiveTurnComponent = (props) => {
+    const {playerLifeValue} = usePlayerLife()
+    const {opponentLifeValue} = useOpponentLife()
     return (
-        <div>
-            {/* <p className="life">Player Life: 40</p>
-            <p className="life">Opponent Life: 40</p> */}
-            <div className="height_30vh"></div>
+        <div className="game_logistics_panel">
+            <div>
+            <p className="life">Opponent Life: <b>{opponentLifeValue}</b></p>
+            <p className="life">Player Life: <b>{playerLifeValue}</b></p>
+            </div>
         {props.player_turn
             ?
                 <p className="turn_text player_turn">Your Turn</p>
