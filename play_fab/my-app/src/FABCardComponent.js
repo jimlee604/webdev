@@ -12,7 +12,6 @@ const FABCardComponent = (props) => {
         <div>
             <p>
                 <b>Cost:</b>{card.cost}
-                {/* || <b>id:</b>{card.id} */}
             </p>
             <p><b>Pitch:</b>{card.pitch}</p>
             <p><b>Attack:</b>{card.attack}</p>

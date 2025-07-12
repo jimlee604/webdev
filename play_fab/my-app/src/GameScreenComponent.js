@@ -17,7 +17,7 @@ const GameScreenComponent = () => {
     const { playerHandValue, setPlayerHandValue } = usePlayerHand();
     const { opponentHandValue, setOpponentHandValue } = useOpponentHand();
     return (
-        <body style={{ backgroundColor: '#9c9c9c' }}>
+        <div className="full-background-container" style={{ backgroundColor: '#9c9c9c' }}>
             <div className='height_10vh' />
             <div className='center'>
                 <div>
@@ -30,7 +30,9 @@ const GameScreenComponent = () => {
                 </div>
             </div>
             <div className="mid_bar">
+                <div className="vflex">
                 <ActiveTurnComponent player_turn={turnValue} />
+                </div>
                 <div className="flexgrow" />
                 <div className="vflex">
                     <InstructionComponent turn_step={turnStepValue} />
@@ -49,7 +51,7 @@ const GameScreenComponent = () => {
                     </div>
                 </div>
             </div>
-        </body>
+        </div>
     );
 }
 

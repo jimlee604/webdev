@@ -6,6 +6,13 @@
   text-align: center;
 }
 
+.full-background-container {
+  height: 100vh;
+  width: 100vw;
+  /* Position if needed, e.g., for absolute positioning within a parent */
+  position: relative; /* or absolute, fixed, depending on your layout */
+}
+
 .center {
   display: flex;
   justify-content: center;
