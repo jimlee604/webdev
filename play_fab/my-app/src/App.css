@@ -6,6 +6,11 @@
   text-align: center;
 }
 
+.error {
+  color: rgb(153, 21, 21);
+  font-weight: bolder;
+}
+
 .full-background-container {
   height: 100vh;
   width: 100vw;

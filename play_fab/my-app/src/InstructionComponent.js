@@ -2,6 +2,7 @@ import { useAttackingCard } from "./AttackingCardContext"
 import { TurnStep } from "./TurnStep"
 import { BrowserView, MobileView } from 'react-device-detect';
 import { useOpponentBlocks } from "./OpponentBlocksContext";
+import { computeTotalBlocks } from "./Utils"
 
 const InstructionComponent = (props) => {
     const { attackingCardValue } = useAttackingCard()
@@ -31,7 +32,7 @@ const InstructionComponent = (props) => {
         }
         case TurnStep.PITCH: {
             return (
-                <p>Please select cards to pay 2 resources.</p>
+                <p>Please select cards to pay {attackingCardValue.cost} resources.</p>
             )
         }
         case TurnStep.PITCH_ERROR: {
@@ -74,6 +75,35 @@ const InstructionComponent = (props) => {
                         <p>Tap NEXT</p>
                     </MobileView>
                 </>
+            )
+        }
+        case TurnStep.OPPONENT_TAKE_DAMAGE: {
+            console.log("total blocks 2: " + blockAmount)
+            const netDamage = Math.max((attackingCardValue.attack - blockAmount), 0)
+            // netDamage = attackingCardValue.attack - blockAmount
+            const mainText = (
+                <p>Attacking for {attackingCardValue.attack}.<br/>
+                    Pitched cards go to the bottom.<br/>
+                    Opponent blocks for {blockAmount}.<br/>
+                    Opponent takes {netDamage} damage.
+                </p>
+            )
+            return (
+                <>
+                    <BrowserView>
+                        {mainText}
+                        <p>Click NEXT</p>
+                    </BrowserView>
+                    <MobileView>
+                        {mainText}
+                        <p>Tap NEXT</p>
+                    </MobileView>
+                </>
+            )
+        }
+        case TurnStep.UNKNOWN_STATE: {
+            return (
+                <p className="error"> UNKNOWN GAME STATE </p>
             )
         }
     }

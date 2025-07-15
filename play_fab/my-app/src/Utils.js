@@ -22,7 +22,7 @@ export function computeBlockIndices() {
 
 export function computeTotalBlocks(blocks) {
     let result = 0
-    for (const block in blocks) {
+    for (const block of blocks) {
         result += block.block
     }
     return result

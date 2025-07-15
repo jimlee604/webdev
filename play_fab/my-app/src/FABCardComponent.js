@@ -75,6 +75,7 @@ const FABCardComponent = (props) => {
                 highlightColor = "highlight_red"
             }
         case TurnStep.OPPONENT_BLOCK:
+        case TurnStep.OPPONENT_TAKE_DAMAGE:
             if (opponentBlocksValue.has(card)) {
                 highlightColor = "highlight_gray"
             }

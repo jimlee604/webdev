@@ -8,9 +8,10 @@ import { usePitchCardsSelected } from "./PitchCardsSelectedContext";
 import { usePlayerHand } from "./PlayerHandContext";
 import Hand from "./Hand";
 import { TurnStep } from "./TurnStep"
-import { computeBlockIndices } from "./Utils";
+import { computeBlockIndices, computeTotalBlocks } from "./Utils";
 import { useOpponentHand } from "./OpponentHandContext";
 import { useOpponentBlocks } from "./OpponentBlocksContext";
+import { useOpponentLife } from "./OpponentLifeContext"
 
 const NextButtonComponent = (props) => {
     const { selectedCardValue } = useSelectedCard()
@@ -21,7 +22,8 @@ const NextButtonComponent = (props) => {
     const { pitchAmountValue } = usePitchAmount()
     const { playerHandValue, setPlayerHandValue } = usePlayerHand()
     const { opponentHandValue } = useOpponentHand()
-    const {setOpponentBlocksValue} = useOpponentBlocks()
+    const { opponentBlocksValue, setOpponentBlocksValue} = useOpponentBlocks()
+    const { opponentLifeValue, setOpponentLifeValue} = useOpponentLife()
     const handleClick = () => {
         switch (turnStepValue) {
             case TurnStep.SELECT_ATTACK:
@@ -50,17 +52,25 @@ const NextButtonComponent = (props) => {
             case TurnStep.PLAYER_ATTACK:
                 // make opp block
                 const blockIndices = computeBlockIndices();
-                console.log(blockIndices)
                 const blockCards = new Set();
                 for (const blockIndex of blockIndices) {
-                    console.log(blockIndex)
                     blockCards.add(opponentHandValue.cards[blockIndex]);
                 }
                 setOpponentBlocksValue(blockCards);
-                console.log("going to opp block");
                 setTurnStepValue(TurnStep.OPPONENT_BLOCK);
                 break;
             case TurnStep.OPPONENT_BLOCK:
+                console.log("raw blocks value")
+                console.log(opponentBlocksValue)
+                console.log("computed blocks: " + computeTotalBlocks(opponentBlocksValue))
+                const netDamage = Math.max((attackingCardValue.attack - computeTotalBlocks(opponentBlocksValue)), 0)
+                setOpponentLifeValue(opponentLifeValue - netDamage)
+                setTurnStepValue(TurnStep.OPPONENT_TAKE_DAMAGE);
+                break;
+            case TurnStep.OPPONENT_TAKE_DAMAGE:
+                setTurnStepValue(TurnStep.UNKNOWN_STATE)
+                break;
+            case TurnStep.UNKNOWN_STATE:
                 break;
         }
     };

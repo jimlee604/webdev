@@ -4,5 +4,7 @@ export const TurnStep = Object.freeze({
     PITCH: 'pitch',
     PITCH_ERROR: 'pitch_error',
     PLAYER_ATTACK: 'player_attack',
-    OPPONENT_BLOCK: 'opponent_block'
+    OPPONENT_BLOCK: 'opponent_block',
+    OPPONENT_TAKE_DAMAGE: 'opponent_take_damage',
+    UNKNOWN_STATE: 'unknown_state'
 })
