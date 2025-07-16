@@ -15,7 +15,7 @@ import { useOpponentLife } from "./OpponentLifeContext"
 
 const NextButtonComponent = (props) => {
     const { selectedCardValue } = useSelectedCard()
-    const { turnValue, setTurnValue } = usePlayerTurn()
+    const { playerTurnValue, setPlayerTurnValue } = usePlayerTurn()
     const { turnStepValue, setTurnStepValue } = useTurnStep()
     const { attackingCardValue, setAttackingCardValue } = useAttackingCard();
     const { pitchCardsSelectedValue } = usePitchCardsSelected()
@@ -68,8 +68,14 @@ const NextButtonComponent = (props) => {
                 setTurnStepValue(TurnStep.OPPONENT_TAKE_DAMAGE);
                 break;
             case TurnStep.OPPONENT_TAKE_DAMAGE:
-                setTurnStepValue(TurnStep.UNKNOWN_STATE)
+                setTurnStepValue(TurnStep.OPPONENT_START_TURN)
+                setPlayerTurnValue(false)
+                const newPlayerHand = new Hand(playerHandValue.cards, true);
+                newPlayerHand.refill()
+                setPlayerHandValue(newPlayerHand)
                 break;
+            case TurnStep.OPPONENT_START_TURN:
+                setTurnStepValue(TurnStep.UNKNOWN_STATE)
             case TurnStep.UNKNOWN_STATE:
                 break;
         }

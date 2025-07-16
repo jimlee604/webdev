@@ -38,7 +38,7 @@ const FABCardComponent = (props) => {
             case TurnStep.PITCH:
             case TurnStep.PITCH_ERROR:
                 let nextPitchValue = new Set(pitchCardsSelectedValue)
-                if (attackingCardValue && attackingCardValue.id != card.id) {
+                if (attackingCardValue && attackingCardValue.id != card.id && card.playerOwned) {
                     if (pitchCardsSelectedValue.has(card)) {
                         nextPitchValue.delete(card)
                         setPitchAmountValue(pitchAmountValue - card.pitch)

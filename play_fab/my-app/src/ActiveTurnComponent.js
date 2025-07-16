@@ -10,7 +10,7 @@ const ActiveTurnComponent = (props) => {
             <p className="life">Opponent Life: <b>{opponentLifeValue}</b></p>
             <p className="life">Player Life: <b>{playerLifeValue}</b></p>
             </div>
-        {props.player_turn
+        {props.player_turn == true
             ?
                 <p className="turn_text player_turn">Your Turn</p>
             :

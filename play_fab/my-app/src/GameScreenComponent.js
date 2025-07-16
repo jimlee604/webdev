@@ -11,11 +11,11 @@ import { usePlayerHand } from "./PlayerHandContext";
 import { useOpponentHand } from "./OpponentHandContext";
 
 const GameScreenComponent = () => {
-    const { turnValue } = usePlayerTurn();
+    const { playerTurnValue } = usePlayerTurn();
     const { turnStepValue } = useTurnStep();
     const { selectedId } = useSelectedCard();
-    const { playerHandValue, setPlayerHandValue } = usePlayerHand();
-    const { opponentHandValue, setOpponentHandValue } = useOpponentHand();
+    const { playerHandValue } = usePlayerHand();
+    const { opponentHandValue } = useOpponentHand();
     return (
         <div className="full-background-container" style={{ backgroundColor: '#9c9c9c' }}>
             <div className='height_5vh' />
@@ -31,7 +31,7 @@ const GameScreenComponent = () => {
             </div>
             <div className="mid_bar">
                 <div className="vflex">
-                <ActiveTurnComponent player_turn={turnValue} />
+                <ActiveTurnComponent player_turn={playerTurnValue} />
                 </div>
                 <div className="flexgrow" />
                 <div className="vflex">

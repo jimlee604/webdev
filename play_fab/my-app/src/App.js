@@ -34,7 +34,7 @@ function App() {
 }
 
 function Root() {
-  const [turnValue, setTurnValue] = useState(true)
+  const [playerTurnValue, setPlayerTurnValue] = useState(true)
   const [turnStepValue, setTurnStepValue] = useState(TurnStep.SELECT_ATTACK)
   const [selectedCardValue, setSelectedCardValue] = useState(undefined)
   const [attackingCardValue, setAttackingCardValue] = useState(undefined)
@@ -50,7 +50,7 @@ function Root() {
   const [playerLifeValue, setPlayerLifeValue] = useState(40)
   const [opponentLifeValue, setOpponentLifeValue] = useState(40)
   return (
-    <PlayerTurnContext.Provider value={{ turnValue: turnValue, setTurnValue: setTurnValue }}>
+    <PlayerTurnContext.Provider value={{ playerTurnValue: playerTurnValue, setPlayerTurnValue: setPlayerTurnValue }}>
       <TurnStepContext.Provider value={{ turnStepValue: turnStepValue, setTurnStepValue: setTurnStepValue }}>
         <SelectedCardContext.Provider value={{ selectedCardValue: selectedCardValue, setSelectedCardValue: setSelectedCardValue }}>
           <AttackingCardContext.Provider value={{ attackingCardValue: attackingCardValue, setAttackingCardValue: setAttackingCardValue }}>

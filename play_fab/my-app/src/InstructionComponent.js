@@ -4,6 +4,21 @@ import { BrowserView, MobileView } from 'react-device-detect';
 import { useOpponentBlocks } from "./OpponentBlocksContext";
 import { computeTotalBlocks } from "./Utils"
 
+const TapNextWrapper = (innerComponent) => {
+    return (
+        <>
+            <BrowserView>
+                {innerComponent}
+                <p>Click NEXT</p>
+            </BrowserView>
+            <MobileView>
+                {innerComponent}
+                <p>Tap NEXT</p>
+            </MobileView>
+        </>
+    )
+}
+
 const InstructionComponent = (props) => {
     const { attackingCardValue } = useAttackingCard()
     const { opponentBlocksValue } = useOpponentBlocks()
@@ -44,18 +59,7 @@ const InstructionComponent = (props) => {
             const mainText = (
                 <p>Attacking for {attackingCardValue.attack}.<br /> Pitched cards go to the bottom.</p>
             )
-            return (
-                <>
-                    <BrowserView>
-                        {mainText}
-                        <p>Click NEXT</p>
-                    </BrowserView>
-                    <MobileView>
-                        {mainText}
-                        <p>Tap NEXT</p>
-                    </MobileView>
-                </>
-            )
+            return TapNextWrapper(mainText)
         }
         case TurnStep.OPPONENT_BLOCK: {
             const mainText = (
@@ -88,18 +92,16 @@ const InstructionComponent = (props) => {
                     Opponent takes {netDamage} damage.
                 </p>
             )
-            return (
-                <>
-                    <BrowserView>
-                        {mainText}
-                        <p>Click NEXT</p>
-                    </BrowserView>
-                    <MobileView>
-                        {mainText}
-                        <p>Tap NEXT</p>
-                    </MobileView>
-                </>
+            return TapNextWrapper(mainText);
+        }
+        case TurnStep.OPPONENT_START_TURN: {
+            const mainText = (
+                <p> Player refills hand.<br/>
+                    Opponent turn starts.
+                </p>
             )
+            return TapNextWrapper(mainText);
+            break;
         }
         case TurnStep.UNKNOWN_STATE: {
             return (
