@@ -100,6 +100,7 @@ const NextButtonComponent = (props) => {
             }
             case TurnStep.PLAYER_BLOCK:
                 setTurnStepValue(TurnStep.PLAYER_TAKE_DAMAGE);
+                break;
             case TurnStep.PLAYER_TAKE_DAMAGE:
                 setTurnStepValue(TurnStep.PLAYER_TURN_START)
                 break;
