@@ -1,5 +1,5 @@
-import { useOpponentLife } from "./OpponentLifeContext";
-import { usePlayerLife } from "./PlayerLifeContext";
+import { useOpponentLife } from "../Contexts/OpponentLifeContext";
+import { usePlayerLife } from "../Contexts/PlayerLifeContext";
 
 const ActiveTurnComponent = (props) => {
     const {playerLifeValue} = usePlayerLife()

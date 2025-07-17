@@ -1,5 +1,4 @@
-import { OpponentAttack } from "./OpponentAttackContext";
-import { useOpponentHand } from "./OpponentHandContext";
+import { OpponentAttack } from "./Contexts/OpponentAttackContext";
 
 export function randInt(min, max) {
     min = Math.ceil(min);

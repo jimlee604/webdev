@@ -1,17 +1,17 @@
-import { usePlayerTurn } from "./PlayerTurnContext";
-import { useTurnStep } from "./TurnStepContext";
-import { useAttackingCard } from "./AttackingCardContext";
-import { useSelectedCard } from "./SelectedCardContext";
-import { usePitchAmount } from "./PitchAmountContext";
-import { usePitchCardsSelected } from "./PitchCardsSelectedContext";
-import { usePlayerHand } from "./PlayerHandContext";
-import Hand from "./Hand";
-import { TurnStep } from "./TurnStep"
-import { computeBlockIndices, computeTotalBlocks, computeOpponentAttacksAndPitches} from "./Utils";
-import { useOpponentHand } from "./OpponentHandContext";
-import { useOpponentBlocks } from "./OpponentBlocksContext";
-import { useOpponentLife } from "./OpponentLifeContext"
-import { useOpponentAttack } from "./OpponentAttackContext";
+import { usePlayerTurn } from "../Contexts/PlayerTurnContext";
+import { useTurnStep } from "../Contexts/TurnStepContext";
+import { useAttackingCard } from "../Contexts/AttackingCardContext";
+import { useSelectedCard } from "../Contexts/SelectedCardContext";
+import { usePitchAmount } from "../Contexts/PitchAmountContext";
+import { usePitchCardsSelected } from "../Contexts/PitchCardsSelectedContext";
+import { usePlayerHand } from "../Contexts/PlayerHandContext";
+import Hand from "../Classes/Hand";
+import { TurnStep } from "../Classes/TurnStep"
+import { computeBlockIndices, computeTotalBlocks, computeOpponentAttacksAndPitches} from "../Utils";
+import { useOpponentHand } from "../Contexts/OpponentHandContext";
+import { useOpponentBlocks } from "../Contexts/OpponentBlocksContext";
+import { useOpponentLife } from "../Contexts/OpponentLifeContext"
+import { useOpponentAttack } from "../Contexts/OpponentAttackContext";
 
 const NextButtonComponent = (props) => {
     const { selectedCardValue } = useSelectedCard();
@@ -51,7 +51,7 @@ const NextButtonComponent = (props) => {
                     setPlayerHandValue(newPlayerHand)
                 }
                 break;
-            case TurnStep.PLAYER_ATTACK:
+            case TurnStep.PLAYER_ATTACK: {
                 // make opp block
                 const blockIndices = computeBlockIndices();
                 const blockCards = new Set();
@@ -59,12 +59,11 @@ const NextButtonComponent = (props) => {
                     blockCards.add(opponentHandValue.cards[blockIndex]);
                 }
                 setOpponentBlocksValue(blockCards);
+                
                 setTurnStepValue(TurnStep.OPPONENT_BLOCK);
                 break;
+            }
             case TurnStep.OPPONENT_BLOCK:
-                console.log("raw blocks value")
-                console.log(opponentBlocksValue)
-                console.log("computed blocks: " + computeTotalBlocks(opponentBlocksValue))
                 const netDamage = Math.max((attackingCardValue.attack - computeTotalBlocks(opponentBlocksValue)), 0)
                 setOpponentLifeValue(opponentLifeValue - netDamage)
                 setTurnStepValue(TurnStep.OPPONENT_TAKE_DAMAGE);
@@ -76,6 +75,7 @@ const NextButtonComponent = (props) => {
                 newPlayerHand.refill()
                 const newOpponentHand = new Hand(opponentHandValue.cards, false);
                 for (const card of opponentBlocksValue) {
+                    // try .delete?
                     const indexToRemove = newOpponentHand.cards.indexOf(card)
                     newOpponentHand.cards.splice(indexToRemove, 1)
                 }
@@ -85,7 +85,27 @@ const NextButtonComponent = (props) => {
             case TurnStep.OPPONENT_START_TURN:
                 setTurnStepValue(TurnStep.OPPONENT_ATTACK)
                 setOpponentAttackValue(computeOpponentAttacksAndPitches(opponentHandValue))
-            case TurnStep.OPPONENT_ATTACK:
+                break;
+            case TurnStep.OPPONENT_ATTACK:{
+                const newOpponentHand = new Hand(opponentHandValue.cards, false);
+                for (const pitchedCard of opponentAttackValue.pitchedCards) {
+                    // try .delete?
+                    const indexToRemove = newOpponentHand.cards.indexOf(pitchedCard)
+                    newOpponentHand.cards.splice(indexToRemove, 1)
+                }
+                setOpponentHandValue(newOpponentHand);
+
+                setTurnStepValue(TurnStep.PLAYER_BLOCK);
+                break;
+            }
+            case TurnStep.PLAYER_BLOCK:
+                setTurnStepValue(TurnStep.PLAYER_TAKE_DAMAGE);
+            case TurnStep.PLAYER_TAKE_DAMAGE:
+                setTurnStepValue(TurnStep.PLAYER_TURN_START)
+                break;
+            case TurnStep.PLAYER_TURN_START:
+                setTurnStepValue(TurnStep.SELECT_ATTACK)
+                break;
             case TurnStep.UNKNOWN_STATE:
                 break;
         }

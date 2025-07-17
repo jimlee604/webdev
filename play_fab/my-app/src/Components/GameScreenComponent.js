@@ -2,13 +2,11 @@ import FABCardComponent from "./FABCardComponent";
 import ActiveTurnComponent from "./ActiveTurnComponent"
 import NextButtonComponent from "./NextButtonComponent"
 import InstructionComponent from "./InstructionComponent";
-import { useId } from "react";
-import { usePlayerTurn } from "./PlayerTurnContext";
-import { useTurnStep } from "./TurnStepContext";
-import { useSelectedCard } from "./SelectedCardContext";
-import Hand from "./Hand";
-import { usePlayerHand } from "./PlayerHandContext";
-import { useOpponentHand } from "./OpponentHandContext";
+import { usePlayerTurn } from "../Contexts/PlayerTurnContext";
+import { useTurnStep } from "../Contexts/TurnStepContext";
+import { useSelectedCard } from "../Contexts/SelectedCardContext";
+import { usePlayerHand } from "../Contexts/PlayerHandContext";
+import { useOpponentHand } from "../Contexts/OpponentHandContext";
 
 const GameScreenComponent = () => {
     const { playerTurnValue } = usePlayerTurn();
