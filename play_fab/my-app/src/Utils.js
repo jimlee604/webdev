@@ -1,3 +1,6 @@
+import { OpponentAttack } from "./OpponentAttackContext";
+import { useOpponentHand } from "./OpponentHandContext";
+
 export function randInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -21,9 +24,31 @@ export function computeBlockIndices() {
 }
 
 export function computeTotalBlocks(blocks) {
-    let result = 0
+    let result = 0;
     for (const block of blocks) {
-        result += block.block
+        result += block.block;
     }
-    return result
+    return result;
+}
+
+export function computeOpponentAttacksAndPitches(opponentHand) {
+    // find lowest cost card with lowest pitch value if there is a tie.
+    let totalPitch = 0;
+    for (const card of opponentHand.cards) {
+        totalPitch += card.pitch;
+    }
+    let attackingCard = null;
+    for (const card of opponentHand.cards) {
+        if (card.cost <= totalPitch - card.pitch) {
+            attackingCard = card;
+            break;
+        }
+    }
+    const pitchedCards = new Set()
+    for (const card of opponentHand.cards) {
+        if (card != attackingCard) {
+            pitchedCards.add(card)
+        }
+    }
+    return new OpponentAttack(attackingCard, pitchedCards)
 }

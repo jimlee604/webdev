@@ -5,6 +5,7 @@ import { useSelectedCard } from "./SelectedCardContext"
 import { useTurnStep } from "./TurnStepContext";
 import { TurnStep } from "./TurnStep"
 import { useOpponentBlocks } from "./OpponentBlocksContext";
+import { useOpponentAttack } from "./OpponentAttackContext";
 
 const FABCardComponent = (props) => {
     const card = props.card
@@ -25,6 +26,7 @@ const FABCardComponent = (props) => {
     const { pitchAmountValue, setPitchAmountValue } = usePitchAmount()
     const { selectedCardValue, setSelectedCardValue } = useSelectedCard()
     const { opponentBlocksValue } = useOpponentBlocks()
+    const { opponentAttackValue } = useOpponentAttack()
 
     const handleClick = () => {
         switch (turnStepValue) {
@@ -79,6 +81,18 @@ const FABCardComponent = (props) => {
             if (opponentBlocksValue.has(card)) {
                 highlightColor = "highlight_gray"
             }
+        case TurnStep.OPPONENT_START_TURN:
+            break;
+        case TurnStep.OPPONENT_ATTACK:
+            if (opponentAttackValue && opponentAttackValue.attackingCard == card) {
+                highlightColor = "highlight_red"
+            } 
+            if (opponentAttackValue && opponentAttackValue.pitchedCards.has(card)) {
+                highlightColor = "highlight_blue"
+            }
+            break
+        case TurnStep.UNKNOWN_STATE:
+            break;
     }
 
     return (

@@ -96,7 +96,8 @@ const InstructionComponent = (props) => {
         }
         case TurnStep.OPPONENT_START_TURN: {
             const mainText = (
-                <p> Player refills hand.<br/>
+                <p> Blocking cards go to discard.<br/>
+                    Player refills hand.<br/>
                     Opponent turn starts.
                 </p>
             )

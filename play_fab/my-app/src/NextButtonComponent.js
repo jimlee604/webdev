@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import { usePlayerTurn } from "./PlayerTurnContext";
 import { useTurnStep } from "./TurnStepContext";
 import { useAttackingCard } from "./AttackingCardContext";
@@ -8,22 +7,25 @@ import { usePitchCardsSelected } from "./PitchCardsSelectedContext";
 import { usePlayerHand } from "./PlayerHandContext";
 import Hand from "./Hand";
 import { TurnStep } from "./TurnStep"
-import { computeBlockIndices, computeTotalBlocks } from "./Utils";
+import { computeBlockIndices, computeTotalBlocks, computeOpponentAttacksAndPitches} from "./Utils";
 import { useOpponentHand } from "./OpponentHandContext";
 import { useOpponentBlocks } from "./OpponentBlocksContext";
 import { useOpponentLife } from "./OpponentLifeContext"
+import { useOpponentAttack } from "./OpponentAttackContext";
 
 const NextButtonComponent = (props) => {
-    const { selectedCardValue } = useSelectedCard()
-    const { playerTurnValue, setPlayerTurnValue } = usePlayerTurn()
-    const { turnStepValue, setTurnStepValue } = useTurnStep()
+    const { selectedCardValue } = useSelectedCard();
+    const { setPlayerTurnValue } = usePlayerTurn();
+    const { turnStepValue, setTurnStepValue } = useTurnStep();
     const { attackingCardValue, setAttackingCardValue } = useAttackingCard();
-    const { pitchCardsSelectedValue } = usePitchCardsSelected()
-    const { pitchAmountValue } = usePitchAmount()
-    const { playerHandValue, setPlayerHandValue } = usePlayerHand()
-    const { opponentHandValue } = useOpponentHand()
-    const { opponentBlocksValue, setOpponentBlocksValue} = useOpponentBlocks()
-    const { opponentLifeValue, setOpponentLifeValue} = useOpponentLife()
+    const { pitchCardsSelectedValue } = usePitchCardsSelected();
+    const { pitchAmountValue } = usePitchAmount();
+    const { playerHandValue, setPlayerHandValue } = usePlayerHand();
+    const { opponentHandValue, setOpponentHandValue } = useOpponentHand();
+    const { opponentBlocksValue, setOpponentBlocksValue} = useOpponentBlocks();
+    const { opponentLifeValue, setOpponentLifeValue} = useOpponentLife();
+    const { opponentAttackValue, setOpponentAttackValue } = useOpponentAttack()
+
     const handleClick = () => {
         switch (turnStepValue) {
             case TurnStep.SELECT_ATTACK:
@@ -72,10 +74,18 @@ const NextButtonComponent = (props) => {
                 setPlayerTurnValue(false)
                 const newPlayerHand = new Hand(playerHandValue.cards, true);
                 newPlayerHand.refill()
+                const newOpponentHand = new Hand(opponentHandValue.cards, false);
+                for (const card of opponentBlocksValue) {
+                    const indexToRemove = newOpponentHand.cards.indexOf(card)
+                    newOpponentHand.cards.splice(indexToRemove, 1)
+                }
                 setPlayerHandValue(newPlayerHand)
+                setOpponentHandValue(newOpponentHand)
                 break;
             case TurnStep.OPPONENT_START_TURN:
-                setTurnStepValue(TurnStep.UNKNOWN_STATE)
+                setTurnStepValue(TurnStep.OPPONENT_ATTACK)
+                setOpponentAttackValue(computeOpponentAttacksAndPitches(opponentHandValue))
+            case TurnStep.OPPONENT_ATTACK:
             case TurnStep.UNKNOWN_STATE:
                 break;
         }

@@ -20,6 +20,7 @@ import Hand from "./Hand";
 import { TurnStep } from "./TurnStep.js"
 import { PlayerLifeContext } from './PlayerLifeContext';
 import { OpponentLifeContext } from './OpponentLifeContext'
+import { OpponentAttack, OpponentAttackContext } from './OpponentAttackContext.js'
 
 // Home Page
 function App() {
@@ -49,6 +50,7 @@ function Root() {
   const [opponentBlocksValue, setOpponentBlocksValue] = useState(new Set())
   const [playerLifeValue, setPlayerLifeValue] = useState(40)
   const [opponentLifeValue, setOpponentLifeValue] = useState(40)
+  const [opponentAttackValue, setOpponentAttackValue] = useState(new OpponentAttack(null, new Set()))
   return (
     <PlayerTurnContext.Provider value={{ playerTurnValue: playerTurnValue, setPlayerTurnValue: setPlayerTurnValue }}>
       <TurnStepContext.Provider value={{ turnStepValue: turnStepValue, setTurnStepValue: setTurnStepValue }}>
@@ -61,7 +63,9 @@ function Root() {
                     <OpponentBlocksContext.Provider value={{ opponentBlocksValue: opponentBlocksValue, setOpponentBlocksValue: setOpponentBlocksValue }}>
                       <PlayerLifeContext.Provider value={{ playerLifeValue: playerLifeValue, setPlayerLifeValue: setPlayerLifeValue }}>
                         <OpponentLifeContext.Provider value={{ opponentLifeValue: opponentLifeValue, setOpponentLifeValue: setOpponentLifeValue }}>
+                          <OpponentAttackContext.Provider value={{ opponentAttackValue: opponentAttackValue, setOpponentAttackValue: setOpponentAttackValue}}>
                           <App />
+                          </OpponentAttackContext.Provider>
                         </OpponentLifeContext.Provider>
                       </PlayerLifeContext.Provider>
                     </OpponentBlocksContext.Provider>

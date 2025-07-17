@@ -7,5 +7,6 @@ export const TurnStep = Object.freeze({
     OPPONENT_BLOCK: 'opponent_block',
     OPPONENT_TAKE_DAMAGE: 'opponent_take_damage',
     OPPONENT_START_TURN: 'opponent_start_turn',
+    OPPONENT_ATTACK: 'opponent_attack',
     UNKNOWN_STATE: 'unknown_state'
 })
