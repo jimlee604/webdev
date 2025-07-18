@@ -77,6 +77,7 @@ const FABCardComponent = (props) => {
             if (selectedCardValue && selectedCardValue.id == card.id) {
                 highlightColor = "highlight_yellow"
             }
+            break;
         case TurnStep.PITCH:
         case TurnStep.PITCH_ERROR:
             if (attackingCardValue && attackingCardValue === card) {
@@ -84,15 +85,21 @@ const FABCardComponent = (props) => {
             } else if (pitchCardsSelectedValue.has(card)) {
                 highlightColor = "highlight_blue"
             }
+            break;
         case TurnStep.PLAYER_ATTACK:
             if (attackingCardValue && attackingCardValue === card) {
                 highlightColor = "highlight_red"
             }
+            break;
         case TurnStep.OPPONENT_BLOCK:
         case TurnStep.OPPONENT_TAKE_DAMAGE:
+            if (attackingCardValue && attackingCardValue === card) {
+                highlightColor = "highlight_red"
+            }
             if (opponentBlocksValue.has(card)) {
                 highlightColor = "highlight_gray"
             }
+            break;
         case TurnStep.OPPONENT_START_TURN:
             break;
         case TurnStep.OPPONENT_ATTACK:
@@ -106,7 +113,7 @@ const FABCardComponent = (props) => {
                 highlightColor = "highlight_yellow"
             }
             break;
-        case TurnStep.PLAYER_TAKE_DAMAGE:
+        case TurnStep.PLAYER_BLOCK: {
             if (opponentAttackValue && opponentAttackValue.attackingCard == card) {
                 highlightColor = "highlight_red"
             }
@@ -117,6 +124,19 @@ const FABCardComponent = (props) => {
                 highlightColor = "highlight_gray"
             }
             break;
+        }
+        case TurnStep.PLAYER_TAKE_DAMAGE: {
+            if (opponentAttackValue && opponentAttackValue.attackingCard == card) {
+                highlightColor = "highlight_red"
+            }
+            if (opponentAttackValue && opponentAttackValue.pitchedCards.has(card)) {
+                highlightColor = "highlight_blue"
+            }
+            if (playerBlocksValue.has(card)) {
+                highlightColor = "highlight_gray"
+            }
+            break;
+        }
         case TurnStep.PLAYER_TURN_START:
             break;
         case TurnStep.UNKNOWN_STATE:

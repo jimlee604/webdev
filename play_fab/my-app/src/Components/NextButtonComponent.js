@@ -12,6 +12,8 @@ import { useOpponentHand } from "../Contexts/OpponentHandContext";
 import { useOpponentBlocks } from "../Contexts/OpponentBlocksContext";
 import { useOpponentLife } from "../Contexts/OpponentLifeContext"
 import { useOpponentAttack } from "../Contexts/OpponentAttackContext";
+import { usePlayerLife } from "../Contexts/PlayerLifeContext";
+import { usePlayerBlocks } from "../Contexts/PlayerBlocksContext";
 
 const NextButtonComponent = (props) => {
     const { selectedCardValue } = useSelectedCard();
@@ -25,6 +27,8 @@ const NextButtonComponent = (props) => {
     const { opponentBlocksValue, setOpponentBlocksValue} = useOpponentBlocks();
     const { opponentLifeValue, setOpponentLifeValue} = useOpponentLife();
     const { opponentAttackValue, setOpponentAttackValue } = useOpponentAttack()
+    const { playerLifeValue, setPlayerLifeValue} = usePlayerLife();
+    const { playerBlocksValue, setPlayerBlocksValue } = usePlayerBlocks()
 
     const handleClick = () => {
         switch (turnStepValue) {
@@ -59,15 +63,15 @@ const NextButtonComponent = (props) => {
                     blockCards.add(opponentHandValue.cards[blockIndex]);
                 }
                 setOpponentBlocksValue(blockCards);
-                
                 setTurnStepValue(TurnStep.OPPONENT_BLOCK);
                 break;
             }
-            case TurnStep.OPPONENT_BLOCK:
+            case TurnStep.OPPONENT_BLOCK: {
                 const netDamage = Math.max((attackingCardValue.attack - computeTotalBlocks(opponentBlocksValue)), 0)
                 setOpponentLifeValue(opponentLifeValue - netDamage)
                 setTurnStepValue(TurnStep.OPPONENT_TAKE_DAMAGE);
                 break;
+            }
             case TurnStep.OPPONENT_TAKE_DAMAGE:
                 setTurnStepValue(TurnStep.OPPONENT_START_TURN)
                 setPlayerTurnValue(false)
@@ -81,6 +85,7 @@ const NextButtonComponent = (props) => {
                 }
                 setPlayerHandValue(newPlayerHand)
                 setOpponentHandValue(newOpponentHand)
+                setOpponentBlocksValue(new Set())
                 break;
             case TurnStep.OPPONENT_START_TURN:
                 setTurnStepValue(TurnStep.OPPONENT_ATTACK)
@@ -94,16 +99,31 @@ const NextButtonComponent = (props) => {
                     newOpponentHand.cards.splice(indexToRemove, 1)
                 }
                 setOpponentHandValue(newOpponentHand);
-
                 setTurnStepValue(TurnStep.PLAYER_BLOCK);
                 break;
             }
-            case TurnStep.PLAYER_BLOCK:
+            case TurnStep.PLAYER_BLOCK: {
                 setTurnStepValue(TurnStep.PLAYER_TAKE_DAMAGE);
+                const netDamage = Math.max((opponentAttackValue.attackingCard.attack - computeTotalBlocks(playerBlocksValue)), 0)
+                console.log(playerLifeValue);
+                console.log(netDamage);
+                setPlayerLifeValue(playerLifeValue - netDamage)
                 break;
-            case TurnStep.PLAYER_TAKE_DAMAGE:
+            }
+            case TurnStep.PLAYER_TAKE_DAMAGE: {
                 setTurnStepValue(TurnStep.PLAYER_TURN_START)
+                const newOpponentHand = new Hand(opponentHandValue.cards, false);
+                newOpponentHand.refill();
+                setOpponentHandValue(newOpponentHand);
+                const newPlayerHand  = new Hand(playerHandValue.cards)
+                for (const card of playerBlocksValue) {
+                    const indexToRemove = newPlayerHand.cards.indexOf(card)
+                    newPlayerHand.cards.splice(indexToRemove, 1)
+                }
+                setPlayerBlocksValue(new Set());
+                setPlayerHandValue(newPlayerHand);
                 break;
+            }
             case TurnStep.PLAYER_TURN_START:
                 setTurnStepValue(TurnStep.SELECT_ATTACK)
                 break;

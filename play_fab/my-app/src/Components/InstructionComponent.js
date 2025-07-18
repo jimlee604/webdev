@@ -108,7 +108,7 @@ const InstructionComponent = (props) => {
         }
         case TurnStep.OPPONENT_ATTACK: {
             return (
-            <p> Opponent pitches some cards and attacks for <b>{opponentAttackValue.attackingCard.attack}</b><br />
+            <p> Opponent pitches some cards and attacks for <b>{opponentAttackValue.attackingCard.attack}</b>.<br />
                 Choose your blocking cards or select none for no blocks.
                 </p>
             );
