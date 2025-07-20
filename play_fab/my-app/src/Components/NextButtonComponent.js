@@ -18,7 +18,7 @@ const NextButtonComponent = (props) => {
     const { setPlayerTurnValue } = usePlayerTurn();
     const { turnStepValue, setTurnStepValue } = useTurnStep();
     const { attackingCardValue, setAttackingCardValue } = useAttackingCard();
-    const { pitchCardsSelectedValue } = usePitchCardsSelected();
+    const { pitchCardsSelectedValue, setPitchCardsSelectedValue } = usePitchCardsSelected();
     const { pitchAmountValue } = usePitchAmount();
     const { playerHandValue, setPlayerHandValue } = usePlayerHand();
     const { opponentHandValue, setOpponentHandValue } = useOpponentHand();
@@ -49,6 +49,7 @@ const NextButtonComponent = (props) => {
                         newPlayerHand.cards.splice(indexToRemove, 1)
                     }
                     setPlayerHandValue(newPlayerHand)
+                    console.log(newPlayerHand)
                 }
                 break;
             case TurnStep.PLAYER_ATTACK: {
@@ -59,7 +60,6 @@ const NextButtonComponent = (props) => {
                     blockCards.add(opponentHandValue.cards[blockIndex]);
                 }
                 setOpponentBlocksValue(blockCards);
-                
                 setTurnStepValue(TurnStep.OPPONENT_BLOCK);
                 break;
             }
@@ -79,6 +79,7 @@ const NextButtonComponent = (props) => {
                     const indexToRemove = newOpponentHand.cards.indexOf(card)
                     newOpponentHand.cards.splice(indexToRemove, 1)
                 }
+                setPitchCardsSelectedValue(new Set())
                 setPlayerHandValue(newPlayerHand)
                 setOpponentHandValue(newOpponentHand)
                 break;

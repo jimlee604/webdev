@@ -34,7 +34,6 @@ const FABCardComponent = (props) => {
         switch (turnStepValue) {
             case TurnStep.SELECT_ATTACK:
             case TurnStep.SELECT_ATTACK_ERROR:
-                console.log(card)
                 if (card.playerOwned) {
                     setSelectedCardValue(card)
                 }
