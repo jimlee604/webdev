@@ -84,11 +84,11 @@ const FABCardComponent = (props) => {
                 highlightColor = "highlight_blue"
             }
         case TurnStep.PLAYER_ATTACK:
+        case TurnStep.OPPONENT_BLOCK:
+        case TurnStep.OPPONENT_TAKE_DAMAGE:
             if (attackingCardValue && attackingCardValue === card) {
                 highlightColor = "highlight_red"
             }
-        case TurnStep.OPPONENT_BLOCK:
-        case TurnStep.OPPONENT_TAKE_DAMAGE:
             if (opponentBlocksValue.has(card)) {
                 highlightColor = "highlight_gray"
             }
@@ -105,6 +105,7 @@ const FABCardComponent = (props) => {
                 highlightColor = "highlight_yellow"
             }
             break;
+        case TurnStep.PLAYER_BLOCK:
         case TurnStep.PLAYER_TAKE_DAMAGE:
             if (opponentAttackValue && opponentAttackValue.attackingCard == card) {
                 highlightColor = "highlight_red"
