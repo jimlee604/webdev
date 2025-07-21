@@ -85,7 +85,6 @@ const InstructionComponent = (props) => {
             )
         }
         case TurnStep.OPPONENT_TAKE_DAMAGE: {
-            console.log("total blocks 2: " + opponentBlockAmount)
             const netDamage = Math.max(attackingCardValue.attack - opponentBlockAmount, 0)
             // netDamage = attackingCardValue.attack - blockAmount
             const mainText = (
