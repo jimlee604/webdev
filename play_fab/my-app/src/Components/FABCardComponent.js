@@ -91,15 +91,12 @@ const FABCardComponent = (props) => {
             if (attackingCardValue && attackingCardValue === card) {
                 highlightColor = "highlight_red"
             }
-<<<<<<< HEAD
             break;
         case TurnStep.OPPONENT_BLOCK:
         case TurnStep.OPPONENT_TAKE_DAMAGE:
             if (attackingCardValue && attackingCardValue === card) {
                 highlightColor = "highlight_red"
             }
-=======
->>>>>>> 71dafcf6401d0397f9f900521346bf2ca0f4bc04
             if (opponentBlocksValue.has(card)) {
                 highlightColor = "highlight_gray"
             }
@@ -117,12 +114,8 @@ const FABCardComponent = (props) => {
                 highlightColor = "highlight_yellow"
             }
             break;
-<<<<<<< HEAD
-        case TurnStep.PLAYER_BLOCK: {
-=======
         case TurnStep.PLAYER_BLOCK:
-        case TurnStep.PLAYER_TAKE_DAMAGE:
->>>>>>> 71dafcf6401d0397f9f900521346bf2ca0f4bc04
+        case TurnStep.PLAYER_TAKE_DAMAGE: {
             if (opponentAttackValue && opponentAttackValue.attackingCard == card) {
                 highlightColor = "highlight_red"
             }
