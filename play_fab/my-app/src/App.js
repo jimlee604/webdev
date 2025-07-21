@@ -49,8 +49,8 @@ function Root() {
   const [playerHandValue, setPlayerHandValue] = useState(playerHand)
   const [opponentHandValue, setOpponentHandValue] = useState(oppHand)
   const [opponentBlocksValue, setOpponentBlocksValue] = useState(new Set())
-  const [playerLifeValue, setPlayerLifeValue] = useState(40)
-  const [opponentLifeValue, setOpponentLifeValue] = useState(40)
+  const [playerLifeValue, setPlayerLifeValue] = useState(20)
+  const [opponentLifeValue, setOpponentLifeValue] = useState(20)
   const [opponentAttackValue, setOpponentAttackValue] = useState(new OpponentAttack(null, new Set()))
   const [playerBlocksValue, setPlayerBlocksValue] = useState(new Set())
   return (

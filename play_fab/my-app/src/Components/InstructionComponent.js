@@ -135,6 +135,16 @@ const InstructionComponent = (props) => {
                 </p>
             )
         }
+        case TurnStep.PLAYER_WIN: {
+            return (
+                <p> Player wins! </p>
+            )
+        }
+        case TurnStep.PLAYER_LOSE: {
+            return (
+                <p> Player loses. </p>
+            )
+        }
         case TurnStep.UNKNOWN_STATE: {
             return (
                 <p className="error"> UNKNOWN GAME STATE </p>

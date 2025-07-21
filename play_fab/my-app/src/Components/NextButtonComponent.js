@@ -55,7 +55,6 @@ const NextButtonComponent = (props) => {
                         newPlayerHand.cards.splice(indexToRemove, 1)
                     }
                     setPlayerHandValue(newPlayerHand)
-                    console.log(newPlayerHand)
                 }
                 break;
             case TurnStep.PLAYER_ATTACK: {
@@ -71,8 +70,12 @@ const NextButtonComponent = (props) => {
             }
             case TurnStep.OPPONENT_BLOCK: {
                 const netDamage = Math.max((attackingCardValue.attack - computeTotalBlocks(opponentBlocksValue)), 0)
-                setOpponentLifeValue(opponentLifeValue - netDamage)
-                setTurnStepValue(TurnStep.OPPONENT_TAKE_DAMAGE);
+                setOpponentLifeValue(Math.max(opponentLifeValue - netDamage, 0))
+                if (opponentLifeValue == 0) {
+                    setTurnStepValue(TurnStep.PLAYER_WIN);
+                } else {
+                    setTurnStepValue(TurnStep.OPPONENT_TAKE_DAMAGE);
+                }
                 break;
             }
             case TurnStep.OPPONENT_TAKE_DAMAGE:{
@@ -114,11 +117,13 @@ const NextButtonComponent = (props) => {
                 break;
             }
             case TurnStep.PLAYER_BLOCK: {
-                setTurnStepValue(TurnStep.PLAYER_TAKE_DAMAGE);
                 const netDamage = Math.max((opponentAttackValue.attackingCard.attack - computeTotalBlocks(playerBlocksValue)), 0)
-                console.log(playerLifeValue);
-                console.log(netDamage);
-                setPlayerLifeValue(playerLifeValue - netDamage)
+                setPlayerLifeValue(Math.max(playerLifeValue - netDamage, 0))
+                if (playerLifeValue == 0) {
+                    setTurnStepValue(TurnStep.PLAYER_LOSE)
+                } else {
+                    setTurnStepValue(TurnStep.PLAYER_TAKE_DAMAGE);
+                }
                 break;
             }
             case TurnStep.PLAYER_TAKE_DAMAGE: {
@@ -141,9 +146,12 @@ const NextButtonComponent = (props) => {
                 setPlayerTurnValue(true)
                 break;
             }
-            case TurnStep.PLAYER_TURN_START:
+            case TurnStep.PLAYER_TURN_START: {
                 setTurnStepValue(TurnStep.SELECT_ATTACK)
                 break;
+            }
+            case TurnStep.PLAYER_WIN:
+            case TurnStep.PLAYER_LOSE:
             case TurnStep.UNKNOWN_STATE:
                 break;
         }

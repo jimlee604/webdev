@@ -7,6 +7,7 @@ import { useTurnStep } from "../Contexts/TurnStepContext";
 import { useSelectedCard } from "../Contexts/SelectedCardContext";
 import { usePlayerHand } from "../Contexts/PlayerHandContext";
 import { useOpponentHand } from "../Contexts/OpponentHandContext";
+import { TurnStep } from "../Classes/TurnStep";
 
 const GameScreenComponent = () => {
     const { playerTurnValue } = usePlayerTurn();
@@ -14,6 +15,7 @@ const GameScreenComponent = () => {
     const { selectedId } = useSelectedCard();
     const { playerHandValue } = usePlayerHand();
     const { opponentHandValue } = useOpponentHand();
+    const endGame = (turnStepValue == TurnStep.PLAYER_WIN) || (turnStepValue == TurnStep.PLAYER_LOSE)
     return (
         <div className="full-background-container" style={{ backgroundColor: '#9c9c9c' }}>
             <div className='height_5vh' />
@@ -35,7 +37,7 @@ const GameScreenComponent = () => {
                 <div className="vflex">
                     <InstructionComponent turn_step={turnStepValue} />
                     <div className="flexgrow" />
-                    <NextButtonComponent selected_id={selectedId} />
+                    { !endGame ? (<NextButtonComponent selected_id={selectedId} />) : (null) }
                     <div className="flexgrow10" />
                 </div>
             </div>
