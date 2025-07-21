@@ -99,7 +99,7 @@ const InstructionComponent = (props) => {
         case TurnStep.OPPONENT_START_TURN: {
             const mainText = (
                 <p> Blocking cards go to discard.<br />
-                    Player refills hand.<br />
+                    Both players draw back up to <b>4</b>.<br/>
                     Opponent turn starts.
                 </p>
             )
@@ -131,7 +131,7 @@ const InstructionComponent = (props) => {
         case TurnStep.PLAYER_TURN_START: {
             return TapNextWrapper(
                 <p> Blocking cards are discarded.<br/>
-                    Opponent draws back up to <b>4</b>.
+                    Both players draw back up to <b>4</b>.
                 </p>
             )
         }

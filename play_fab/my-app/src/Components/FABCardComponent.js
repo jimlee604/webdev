@@ -33,11 +33,12 @@ const FABCardComponent = (props) => {
     const handleClick = () => {
         switch (turnStepValue) {
             case TurnStep.SELECT_ATTACK:
-            case TurnStep.SELECT_ATTACK_ERROR:
+            case TurnStep.SELECT_ATTACK_ERROR:{
                 if (card.playerOwned) {
                     setSelectedCardValue(card)
                 }
                 break;
+            }
             case TurnStep.PITCH:
             case TurnStep.PITCH_ERROR:
                 let nextPitchValue = new Set(pitchCardsSelectedValue)
@@ -73,7 +74,7 @@ const FABCardComponent = (props) => {
     switch (turnStepValue) {
         case TurnStep.SELECT_ATTACK:
         case TurnStep.SELECT_ATTACK_ERROR:
-            if (selectedCardValue && selectedCardValue.id == card.id) {
+            if (selectedCardValue === card) {
                 highlightColor = "highlight_yellow"
             }
             break;
