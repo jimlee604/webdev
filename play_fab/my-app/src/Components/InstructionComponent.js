@@ -22,6 +22,7 @@ const TapNextWrapper = (innerComponent) => {
 }
 
 const InstructionComponent = (props) => {
+    console.log("render " + props.turn_step);
     const { attackingCardValue } = useAttackingCard()
     const { opponentBlocksValue } = useOpponentBlocks()
     const { opponentAttackValue } = useOpponentAttack()

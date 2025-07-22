@@ -71,15 +71,14 @@ const NextButtonComponent = (props) => {
             case TurnStep.OPPONENT_BLOCK: {
                 const netDamage = Math.max((attackingCardValue.attack - computeTotalBlocks(opponentBlocksValue)), 0)
                 setOpponentLifeValue(Math.max(opponentLifeValue - netDamage, 0))
-                if (opponentLifeValue == 0) {
-                    setTurnStepValue(TurnStep.PLAYER_WIN);
-                } else {
-                    setTurnStepValue(TurnStep.OPPONENT_TAKE_DAMAGE);
-                }
+                setTurnStepValue(TurnStep.OPPONENT_TAKE_DAMAGE)
                 break;
             }
             case TurnStep.OPPONENT_TAKE_DAMAGE:{
-                setTurnStepValue(TurnStep.OPPONENT_START_TURN)
+                if (opponentLifeValue == 0) {
+                    setTurnStepValue(TurnStep.PLAYER_WIN);
+                    break;
+                }
                 setPlayerTurnValue(false)
                 const newPlayerHand = new Hand(playerHandValue.cards, true);
                 const indexToRemove = newPlayerHand.cards.indexOf(attackingCardValue)
@@ -97,9 +96,9 @@ const NextButtonComponent = (props) => {
                 setPlayerHandValue(newPlayerHand)
                 setOpponentHandValue(newOpponentHand)
                 console.log("about to reset attacking card value")
-                
                 setAttackingCardValue(undefined)
                 setOpponentBlocksValue(new Set())
+                setTurnStepValue(TurnStep.OPPONENT_START_TURN);
                 break;
             }
             case TurnStep.OPPONENT_START_TURN:
@@ -119,31 +118,34 @@ const NextButtonComponent = (props) => {
             case TurnStep.PLAYER_BLOCK: {
                 const netDamage = Math.max((opponentAttackValue.attackingCard.attack - computeTotalBlocks(playerBlocksValue)), 0)
                 setPlayerLifeValue(Math.max(playerLifeValue - netDamage, 0))
-                if (playerLifeValue == 0) {
-                    setTurnStepValue(TurnStep.PLAYER_LOSE)
-                } else {
-                    setTurnStepValue(TurnStep.PLAYER_TAKE_DAMAGE);
-                }
+                setTurnStepValue(TurnStep.PLAYER_TAKE_DAMAGE);
                 break;
             }
             case TurnStep.PLAYER_TAKE_DAMAGE: {
+                if (playerLifeValue == 0) {
+                    setTurnStepValue(TurnStep.PLAYER_LOSE)
+                    break;
+                }
                 setTurnStepValue(TurnStep.PLAYER_TURN_START)
                 const newOpponentHand = new Hand(opponentHandValue.cards, false);
                 const indexToRemove = newOpponentHand.cards.indexOf(opponentAttackValue.attackingCard)
                 newOpponentHand.cards.splice(indexToRemove, 1)
                 newOpponentHand.refill();
                 setOpponentHandValue(newOpponentHand);
-                const newPlayerHand  = new Hand(playerHandValue.cards)
+                const newPlayerHand  = new Hand(playerHandValue.cards, true)
                 for (const card of playerBlocksValue) {
                     const indexToRemove = newPlayerHand.cards.indexOf(card)
                     newPlayerHand.cards.splice(indexToRemove, 1)
                 }
                 // temporary: refill all hands
+                console.log("player hand after blocks: ")
+                console.log(newPlayerHand)
                 newPlayerHand.refill()
                 setPlayerBlocksValue(new Set());
                 setPlayerHandValue(newPlayerHand);
                 setOpponentAttackValue(new OpponentAttack(null, new Set()));
                 setPlayerTurnValue(true)
+                setTurnStepValue(TurnStep.PLAYER_TURN_START);
                 break;
             }
             case TurnStep.PLAYER_TURN_START: {
