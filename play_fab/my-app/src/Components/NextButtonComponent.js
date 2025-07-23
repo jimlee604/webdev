@@ -34,7 +34,6 @@ const NextButtonComponent = (props) => {
         switch (turnStepValue) {
             case TurnStep.SELECT_ATTACK:
             case TurnStep.SELECT_ATTACK_ERROR:
-                console.log(selectedCardValue)
                 if (selectedCardValue == undefined) {
                     setTurnStepValue(TurnStep.SELECT_ATTACK_ERROR)
                 } else {
@@ -48,13 +47,13 @@ const NextButtonComponent = (props) => {
                 if (pitchAmountValue < attackingCardValue.cost) {
                     setTurnStepValue(TurnStep.PITCH_ERROR)
                 } else {
-                    setTurnStepValue(TurnStep.PLAYER_ATTACK)
                     const newPlayerHand = new Hand(playerHandValue.cards, true);
                     for (const pitchedCard of pitchCardsSelectedValue) {
                         const indexToRemove = newPlayerHand.cards.indexOf(pitchedCard)
                         newPlayerHand.cards.splice(indexToRemove, 1)
                     }
                     setPlayerHandValue(newPlayerHand)
+                    setTurnStepValue(TurnStep.PLAYER_ATTACK)
                 }
                 break;
             case TurnStep.PLAYER_ATTACK: {
@@ -64,6 +63,8 @@ const NextButtonComponent = (props) => {
                 for (const blockIndex of blockIndices) {
                     blockCards.add(opponentHandValue.cards[blockIndex]);
                 }
+                console.log("opp blocks:")
+                console.log(blockCards)
                 setOpponentBlocksValue(blockCards);
                 setTurnStepValue(TurnStep.OPPONENT_BLOCK);
                 break;
@@ -95,7 +96,6 @@ const NextButtonComponent = (props) => {
                 setPitchAmountValue(0)
                 setPlayerHandValue(newPlayerHand)
                 setOpponentHandValue(newOpponentHand)
-                console.log("about to reset attacking card value")
                 setAttackingCardValue(undefined)
                 setOpponentBlocksValue(new Set())
                 setTurnStepValue(TurnStep.OPPONENT_START_TURN);
@@ -138,8 +138,6 @@ const NextButtonComponent = (props) => {
                     newPlayerHand.cards.splice(indexToRemove, 1)
                 }
                 // temporary: refill all hands
-                console.log("player hand after blocks: ")
-                console.log(newPlayerHand)
                 newPlayerHand.refill()
                 setPlayerBlocksValue(new Set());
                 setPlayerHandValue(newPlayerHand);

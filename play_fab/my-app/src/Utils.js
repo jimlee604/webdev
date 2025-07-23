@@ -17,8 +17,6 @@ export function computeBlockIndices() {
         pool.splice(indexToRemove, 1)
         blockSize--
     }
-    console.log("block indices:")
-    console.log(blockIndices)
     return blockIndices;
 }
 

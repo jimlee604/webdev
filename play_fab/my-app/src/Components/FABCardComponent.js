@@ -70,6 +70,7 @@ const FABCardComponent = (props) => {
         }
     };
 
+    console.log(turnStepValue)
     let highlightColor;
     switch (turnStepValue) {
         case TurnStep.SELECT_ATTACK:
@@ -87,12 +88,6 @@ const FABCardComponent = (props) => {
             }
             break;
         case TurnStep.PLAYER_ATTACK:
-        case TurnStep.OPPONENT_BLOCK:
-        case TurnStep.OPPONENT_TAKE_DAMAGE:
-            if (attackingCardValue && attackingCardValue === card) {
-                highlightColor = "highlight_red"
-            }
-            break;
         case TurnStep.OPPONENT_BLOCK:
         case TurnStep.OPPONENT_TAKE_DAMAGE:
             if (attackingCardValue && attackingCardValue === card) {
