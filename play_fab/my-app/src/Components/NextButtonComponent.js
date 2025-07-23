@@ -63,8 +63,6 @@ const NextButtonComponent = (props) => {
                 for (const blockIndex of blockIndices) {
                     blockCards.add(opponentHandValue.cards[blockIndex]);
                 }
-                console.log("opp blocks:")
-                console.log(blockCards)
                 setOpponentBlocksValue(blockCards);
                 setTurnStepValue(TurnStep.OPPONENT_BLOCK);
                 break;
