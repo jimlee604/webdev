@@ -17,8 +17,6 @@ const GameScreenComponent = () => {
     const { opponentHandValue } = useOpponentHand();
     const endGame = (turnStepValue == TurnStep.PLAYER_WIN) || (turnStepValue == TurnStep.PLAYER_LOSE)
 
-    const Spacer = () => <div style={{ flexGrow: 1 }} />;
-
     return (
         <div className="full-background-container" style={{ backgroundColor: '#9c9c9c' }}>
             <div className='height_5vh' />
@@ -33,15 +31,17 @@ const GameScreenComponent = () => {
                 </div>
             </div>
             <div className="mid_bar">
-                <div className="vflex">
+                <div className="vflex width_40vh">
                     <ActiveTurnComponent player_turn={playerTurnValue} />
                 </div>
-                <div className="flexgrow" />
-                <div className="vflex">
-                    <InstructionComponent turn_step={turnStepValue} />
-                    <div className="flexgrow" />
-                    {!endGame ? (<NextButtonComponent selected_id={selectedId} />) : (null)}
-                    <div className="flexgrow10" />
+                <div className="vflex width_60vh">
+                    <div className="height_30vh">
+                        <InstructionComponent turn_step={turnStepValue} />
+                    </div>
+                    <div className={"height_20vh" + (endGame ? " hidden-but-takes-space" : "")}>
+                        <NextButtonComponent selected_id={selectedId} />
+                    </div>
+                    <div className="height_5vh" />
                 </div>
             </div>
             <div className="center">

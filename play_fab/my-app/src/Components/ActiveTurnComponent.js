@@ -7,8 +7,8 @@ const ActiveTurnComponent = (props) => {
     return (
         <div className="game_logistics_panel">
             <div>
-                <p className="life">Opponent Life: <b>{opponentLifeValue}</b></p>
-                <p className="life">Player Life: <b>{playerLifeValue}</b></p>
+                <p className="life">Opponent: <b>{opponentLifeValue}</b></p>
+                <p className="life">Player: <b>{playerLifeValue}</b></p>
             </div>
             {props.player_turn == true
                 ?

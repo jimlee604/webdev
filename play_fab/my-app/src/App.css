@@ -18,6 +18,10 @@
   position: relative; /* or absolute, fixed, depending on your layout */
 }
 
+.hidden-but-takes-space {
+  visibility: hidden;
+}
+
 .center {
   display: flex;
   justify-content: center;
@@ -40,14 +44,27 @@
   height: 30vh;
 }
 
+.height_50vh {
+  height: 50vh;
+}
+
+.width_40vh {
+  width: 40vw;
+}
+
+.width_60vh {
+  width: 60vw;
+}
+
 .game_logistics_panel {
-  margin-left: 10vw;
+  margin-left: 5vw;
 }
 
 .hflex {
   display: flex;
   flex-direction: row;
 }
+
 .vflex {
   display: flex;
   flex-direction: column;
@@ -103,16 +120,16 @@
 }
 
 p.turn_text {
-  font-size: 2em;
+  font-size: 1.5em;
   font-weight: bolder;
 }
 
 p.player_turn {
-  color:blue;
+  color:rgb(50, 50, 186);
 }
 
 p.opponent_turn {
-  color:red;
+  color:rgb(186, 44, 44);
 }
 
 .mid_bar {
