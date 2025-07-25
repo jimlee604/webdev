@@ -18,7 +18,7 @@ const GameScreenComponent = () => {
     const endGame = (turnStepValue == TurnStep.PLAYER_WIN) || (turnStepValue == TurnStep.PLAYER_LOSE)
 
     return (
-        <div className="full-background-container" style={{ backgroundColor: '#9c9c9c' }}>
+        <div className="full-background-container" style={{ backgroundColor: '#8ecde2ff' }}>
             <div className='height_5vh' />
             <div className='center'>
                 <div>
