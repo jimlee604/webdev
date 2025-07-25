@@ -1,5 +1,7 @@
 import { OpponentAttack } from "./Contexts/OpponentAttackContext";
 
+export const STARTING_LIFE_TOTAL = 10;
+
 export function randInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);

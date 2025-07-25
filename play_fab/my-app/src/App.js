@@ -22,6 +22,7 @@ import { PlayerLifeContext } from './Contexts/PlayerLifeContext.js';
 import { OpponentLifeContext } from './Contexts/OpponentLifeContext.js'
 import { OpponentAttack, OpponentAttackContext } from './Contexts/OpponentAttackContext.js'
 import { PlayerBlocksContext } from './Contexts/PlayerBlocksContext.js';
+import { STARTING_LIFE_TOTAL } from './Utils.js'
 
 // Home Page
 function App() {
@@ -36,23 +37,23 @@ function App() {
 }
 
 function Root() {
-  const [playerTurnValue, setPlayerTurnValue] = useState(true)
-  const [turnStepValue, setTurnStepValue] = useState(TurnStep.SELECT_ATTACK)
-  const [selectedCardValue, setSelectedCardValue] = useState(undefined)
-  const [attackingCardValue, setAttackingCardValue] = useState(undefined)
-  const [pitchCardsSelectedValue, setPitchCardsSelectedValue] = useState(new Set())
-  const [pitchAmountValue, setPitchAmountValue] = useState(0)
-  const playerHand = new Hand([], true)
+  const [playerTurnValue, setPlayerTurnValue] = useState(true);
+  const [turnStepValue, setTurnStepValue] = useState(TurnStep.SELECT_ATTACK);
+  const [selectedCardValue, setSelectedCardValue] = useState(undefined);
+  const [attackingCardValue, setAttackingCardValue] = useState(undefined);
+  const [pitchCardsSelectedValue, setPitchCardsSelectedValue] = useState(new Set());
+  const [pitchAmountValue, setPitchAmountValue] = useState(0);
+  const playerHand = new Hand([], true);
   playerHand.refill();
-  const oppHand = new Hand([], false)
+  const oppHand = new Hand([], false);
   oppHand.refill();
-  const [playerHandValue, setPlayerHandValue] = useState(playerHand)
-  const [opponentHandValue, setOpponentHandValue] = useState(oppHand)
-  const [opponentBlocksValue, setOpponentBlocksValue] = useState(new Set())
-  const [playerLifeValue, setPlayerLifeValue] = useState(20)
-  const [opponentLifeValue, setOpponentLifeValue] = useState(20)
-  const [opponentAttackValue, setOpponentAttackValue] = useState(new OpponentAttack(null, new Set()))
-  const [playerBlocksValue, setPlayerBlocksValue] = useState(new Set())
+  const [playerHandValue, setPlayerHandValue] = useState(playerHand);
+  const [opponentHandValue, setOpponentHandValue] = useState(oppHand);
+  const [opponentBlocksValue, setOpponentBlocksValue] = useState(new Set());
+  const [playerLifeValue, setPlayerLifeValue] = useState(STARTING_LIFE_TOTAL); // TODO: life total variable
+  const [opponentLifeValue, setOpponentLifeValue] = useState(STARTING_LIFE_TOTAL);
+  const [opponentAttackValue, setOpponentAttackValue] = useState(new OpponentAttack(null, new Set()));
+  const [playerBlocksValue, setPlayerBlocksValue] = useState(new Set());
   return (
     <PlayerTurnContext.Provider value={{ playerTurnValue: playerTurnValue, setPlayerTurnValue: setPlayerTurnValue }}>
       <TurnStepContext.Provider value={{ turnStepValue: turnStepValue, setTurnStepValue: setTurnStepValue }}>

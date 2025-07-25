@@ -14,4 +14,4 @@ export const TurnStep = Object.freeze({
     PLAYER_WIN: 'player_win',
     PLAYER_LOSE: 'player_lose',
     UNKNOWN_STATE: 'unknown_state'
-})
+});

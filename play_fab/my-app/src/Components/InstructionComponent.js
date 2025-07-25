@@ -22,10 +22,10 @@ const TapNextWrapper = (innerComponent) => {
 }
 
 const InstructionComponent = (props) => {
-    const { attackingCardValue } = useAttackingCard()
-    const { opponentBlocksValue } = useOpponentBlocks()
-    const { opponentAttackValue } = useOpponentAttack()
-    const { playerBlocksValue } = usePlayerBlocks()
+    const { attackingCardValue } = useAttackingCard();
+    const { opponentBlocksValue } = useOpponentBlocks();
+    const { opponentAttackValue } = useOpponentAttack();
+    const { playerBlocksValue } = usePlayerBlocks();
 
     let opponentBlockAmount = 0;
     for (const block of opponentBlocksValue) {
@@ -41,27 +41,27 @@ const InstructionComponent = (props) => {
         case TurnStep.SELECT_ATTACK: {
             return (
                 <p>Choose an Attack card.</p>
-            )
+            );
         }
         case TurnStep.SELECT_ATTACK_ERROR: {
             return (
                 <p>Please choose an Attack card first.</p>
-            )
+            );
         }
         case TurnStep.PITCH: {
             return (
                 <p>Please select cards to pay {attackingCardValue.cost} resources.</p>
-            )
+            );
         }
         case TurnStep.PITCH_ERROR: {
             return (
                 <p>Not enough resources pitched.<br /> Please select cards to pay {attackingCardValue.cost} resources.</p>
-            )
+            );
         }
         case TurnStep.PLAYER_ATTACK: {
             const mainText = (
                 <p>Attacking for <b>{attackingCardValue.attack}</b>.<br /> Pitched cards go to the bottom.</p>
-            )
+            );
             return TapNextWrapper(mainText)
         }
         case TurnStep.OPPONENT_BLOCK: {
@@ -70,7 +70,7 @@ const InstructionComponent = (props) => {
                     Pitched cards go to the bottom.<br />
                     Opponent blocks for <b>{opponentBlockAmount}</b>.
                 </p>
-            )
+            );
             return (
                 <>
                     <BrowserView>
@@ -82,7 +82,7 @@ const InstructionComponent = (props) => {
                         <p>Tap NEXT</p>
                     </MobileView>
                 </>
-            )
+            );
         }
         case TurnStep.OPPONENT_TAKE_DAMAGE: {
             const netDamage = Math.max(attackingCardValue.attack - opponentBlockAmount, 0)
@@ -93,7 +93,7 @@ const InstructionComponent = (props) => {
                     Opponent blocks for <b>{opponentBlockAmount}</b>.<br />
                     Opponent takes <b>{netDamage}</b> damage.
                 </p>
-            )
+            );
             return TapNextWrapper(mainText);
         }
         case TurnStep.OPPONENT_START_TURN: {
@@ -102,7 +102,7 @@ const InstructionComponent = (props) => {
                     Both players draw back up to <b>4</b>.<br/>
                     Opponent turn starts.
                 </p>
-            )
+            );
             return TapNextWrapper(mainText);
         }
         case TurnStep.OPPONENT_ATTACK: {
@@ -133,22 +133,22 @@ const InstructionComponent = (props) => {
                 <p> Blocking cards are discarded.<br/>
                     Both players draw back up to <b>4</b>.
                 </p>
-            )
+            );
         }
         case TurnStep.PLAYER_WIN: {
             return (
                 <p> Player wins! </p>
-            )
+            );
         }
         case TurnStep.PLAYER_LOSE: {
             return (
                 <p> Player loses. </p>
-            )
+            );
         }
         case TurnStep.UNKNOWN_STATE: {
             return (
                 <p className="error"> UNKNOWN GAME STATE </p>
-            )
+            );
         }
     }
 }
