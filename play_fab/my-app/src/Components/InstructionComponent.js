@@ -2,7 +2,6 @@ import { useAttackingCard } from "../Contexts/AttackingCardContext"
 import { TurnStep } from "../Classes/TurnStep"
 import { BrowserView, MobileView } from 'react-device-detect';
 import { useOpponentBlocks } from "../Contexts/OpponentBlocksContext";
-import { computeTotalBlocks } from "../Utils"
 import { useOpponentAttack } from "../Contexts/OpponentAttackContext";
 import { usePlayerBlocks } from "../Contexts/PlayerBlocksContext";
 

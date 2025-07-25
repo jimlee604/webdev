@@ -1,28 +1,24 @@
 import './App.css';
-import GameScreenComponent from './Components/GameScreenComponent.js'
-import HomeScreenComponent from './Components/HomeScreenComponent.js'
-import {
-  BrowserRouter,
-  Routes,
-  Route
-} from "react-router-dom";
+import Hand from "./Classes/Hand";
+import GameScreenComponent from './Components/GameScreenComponent'
+import HomeScreenComponent from './Components/HomeScreenComponent'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from 'react';
-import { PlayerTurnContext } from './Contexts/PlayerTurnContext.js'
-import { SelectedCardContext } from './Contexts/SelectedCardContext.js'
+import { PlayerTurnContext } from './Contexts/PlayerTurnContext'
+import { SelectedCardContext } from './Contexts/SelectedCardContext'
 import { TurnStepContext } from './Contexts/TurnStepContext'
-import { AttackingCardContext } from './Contexts/AttackingCardContext.js';
-import { PitchCardsSelectedContext } from './Contexts/PitchCardsSelectedContext.js';
-import { PitchAmountContext } from './Contexts/PitchAmountContext.js'
+import { AttackingCardContext } from './Contexts/AttackingCardContext';
+import { PitchCardsSelectedContext } from './Contexts/PitchCardsSelectedContext';
+import { PitchAmountContext } from './Contexts/PitchAmountContext'
 import { PlayerHandContext } from './Contexts/PlayerHandContext';
 import { OpponentHandContext } from './Contexts/OpponentHandContext';
-import { OpponentBlocksContext } from './Contexts/OpponentBlocksContext.js';
-import Hand from "./Classes/Hand.js";
-import { TurnStep } from "./Classes/TurnStep.js"
-import { PlayerLifeContext } from './Contexts/PlayerLifeContext.js';
-import { OpponentLifeContext } from './Contexts/OpponentLifeContext.js'
-import { OpponentAttack, OpponentAttackContext } from './Contexts/OpponentAttackContext.js'
-import { PlayerBlocksContext } from './Contexts/PlayerBlocksContext.js';
-import { STARTING_LIFE_TOTAL } from './Utils.js'
+import { OpponentBlocksContext } from './Contexts/OpponentBlocksContext';
+import { TurnStep } from "./Classes/TurnStep"
+import { PlayerLifeContext } from './Contexts/PlayerLifeContext';
+import { OpponentLifeContext } from './Contexts/OpponentLifeContext'
+import { OpponentAttack, OpponentAttackContext } from './Contexts/OpponentAttackContext'
+import { PlayerBlocksContext } from './Contexts/PlayerBlocksContext';
+import { STARTING_LIFE_TOTAL } from './Utils'
 
 // Home Page
 function App() {
@@ -66,9 +62,9 @@ function Root() {
                     <OpponentBlocksContext.Provider value={{ opponentBlocksValue: opponentBlocksValue, setOpponentBlocksValue: setOpponentBlocksValue }}>
                       <PlayerLifeContext.Provider value={{ playerLifeValue: playerLifeValue, setPlayerLifeValue: setPlayerLifeValue }}>
                         <OpponentLifeContext.Provider value={{ opponentLifeValue: opponentLifeValue, setOpponentLifeValue: setOpponentLifeValue }}>
-                          <OpponentAttackContext.Provider value={{ opponentAttackValue: opponentAttackValue, setOpponentAttackValue: setOpponentAttackValue}}>
+                          <OpponentAttackContext.Provider value={{ opponentAttackValue: opponentAttackValue, setOpponentAttackValue: setOpponentAttackValue }}>
                             <PlayerBlocksContext.Provider value={{ playerBlocksValue: playerBlocksValue, setPlayerBlocksValue: setPlayerBlocksValue }}>
-                          <App />
+                              <App />
                             </PlayerBlocksContext.Provider>
                           </OpponentAttackContext.Provider>
                         </OpponentLifeContext.Provider>
