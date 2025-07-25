@@ -35,7 +35,7 @@ const GameScreenComponent = () => {
                     <ActiveTurnComponent player_turn={playerTurnValue} />
                 </div>
                 <div className="vflex width_60vh">
-                    <div className="height_30vh">
+                    <div className="height_30vh instructions_panel">
                         <InstructionComponent turn_step={turnStepValue} />
                     </div>
                     <div className={"height_20vh" + (endGame ? " hidden-but-takes-space" : "")}>
