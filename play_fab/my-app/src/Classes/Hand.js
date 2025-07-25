@@ -31,10 +31,10 @@ class Hand {
         while (this.cards.length < Hand.maxHandSize) {
             this.cards.push(new Card(
                 crypto.randomUUID(),
-                randInt(minCardCost, maxCardCost),
-                randInt(minCardPitch, maxCardPitch),
-                randInt(minCardAttack, maxCardAttack),
-                randInt(minCardBlock, maxCardBlock),
+                randInt(Hand.minCardCost, Hand.maxCardCost),
+                randInt(Hand.minCardPitch, Hand.maxCardPitch),
+                randInt(Hand.minCardAttack, Hand.maxCardAttack),
+                randInt(Hand.minCardBlock, Hand.maxCardBlock),
                 this.player));
         }
     }
