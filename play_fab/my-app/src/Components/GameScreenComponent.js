@@ -1,12 +1,12 @@
-import FABCardComponent from "./FABCardComponent";
 import ActiveTurnComponent from "./ActiveTurnComponent"
-import NextButtonComponent from "./NextButtonComponent"
+import FABCardComponent from "./FABCardComponent";
 import InstructionComponent from "./InstructionComponent";
-import { usePlayerTurn } from "../Contexts/PlayerTurnContext";
-import { useTurnStep } from "../Contexts/TurnStepContext";
-import { useSelectedCard } from "../Contexts/SelectedCardContext";
-import { usePlayerHand } from "../Contexts/PlayerHandContext";
-import { useOpponentHand } from "../Contexts/OpponentHandContext";
+import NextButtonComponent from "./NextButtonComponent"
+import { usePlayerHand } from "../Contexts/PlayerHandContext.ts";
+import { usePlayerTurn } from "../Contexts/PlayerTurnContext.ts";
+import { useOpponentHand } from "../Contexts/OpponentHandContext.ts";
+import { useSelectedCard } from "../Contexts/SelectedCardContext.ts";
+import { useTurnStep } from "../Contexts/TurnStepContext.ts";
 import { TurnStep } from "../Classes/TurnStep";
 
 const GameScreenComponent = () => {

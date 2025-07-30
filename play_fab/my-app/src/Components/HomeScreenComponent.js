@@ -1,6 +1,4 @@
-import {
-    useNavigate
-  } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const HomeScreenComponent = () => {
     const navigate = useNavigate();

@@ -1,19 +1,19 @@
-import { useAttackingCard } from "../Contexts/AttackingCardContext.ts";
-import { useOpponentAttack, OpponentAttack } from "../Contexts/OpponentAttackContext.ts";
-import { usePlayerTurn } from "../Contexts/PlayerTurnContext";
-import { useTurnStep } from "../Contexts/TurnStepContext";
-import { useSelectedCard } from "../Contexts/SelectedCardContext";
-import { usePitchAmount } from "../Contexts/PitchAmountContext";
-import { usePitchCardsSelected } from "../Contexts/PitchCardsSelectedContext";
-import { usePlayerHand } from "../Contexts/PlayerHandContext";
 import Hand from "../Classes/Hand";
-import { TurnStep } from "../Classes/TurnStep"
-import { computeBlockIndices, computeTotalBlocks, computeOpponentAttacksAndPitches} from "../Utils";
-import { useOpponentHand } from "../Contexts/OpponentHandContext";
-import { useOpponentBlocks } from "../Contexts/OpponentBlocksContext";
-import { useOpponentLife } from "../Contexts/OpponentLifeContext"
-import { usePlayerLife } from "../Contexts/PlayerLifeContext";
-import { usePlayerBlocks } from "../Contexts/PlayerBlocksContext";
+import { TurnStep } from "../Classes/TurnStep";
+import { useAttackingCard } from "../Contexts/AttackingCardContext.ts";
+import { OpponentAttack, useOpponentAttack } from "../Contexts/OpponentAttackContext.ts";
+import { useOpponentBlocks } from "../Contexts/OpponentBlocksContext.ts";
+import { useOpponentHand } from "../Contexts/OpponentHandContext.ts";
+import { useOpponentLife } from "../Contexts/OpponentLifeContext.ts";
+import { usePitchAmount } from "../Contexts/PitchAmountContext.ts";
+import { usePitchCardsSelected } from "../Contexts/PitchCardsSelectedContext.ts";
+import { usePlayerBlocks } from "../Contexts/PlayerBlocksContext.ts";
+import { usePlayerHand } from "../Contexts/PlayerHandContext.ts";
+import { usePlayerLife } from "../Contexts/PlayerLifeContext.ts";
+import { usePlayerTurn } from "../Contexts/PlayerTurnContext.ts";
+import { useSelectedCard } from "../Contexts/SelectedCardContext.ts";
+import { useTurnStep } from "../Contexts/TurnStepContext.ts";
+import { computeBlockIndices, computeOpponentAttacksAndPitches, computeTotalBlocks } from "../Utils";
 
 const NextButtonComponent = (props) => {
     const { selectedCardValue, setSelectedCardValue } = useSelectedCard();

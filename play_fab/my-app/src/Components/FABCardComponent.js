@@ -1,12 +1,12 @@
+import { TurnStep } from "../Classes/TurnStep";
 import { useAttackingCard } from "../Contexts/AttackingCardContext.ts";
 import { useOpponentAttack } from "../Contexts/OpponentAttackContext.ts";
-import { usePitchAmount } from "../Contexts/PitchAmountContext";
-import { usePitchCardsSelected } from "../Contexts/PitchCardsSelectedContext";
-import { useSelectedCard } from "../Contexts/SelectedCardContext"
-import { useTurnStep } from "../Contexts/TurnStepContext";
-import { TurnStep } from "../Classes/TurnStep"
-import { useOpponentBlocks } from "../Contexts/OpponentBlocksContext";
-import { usePlayerBlocks } from "../Contexts/PlayerBlocksContext";
+import { useOpponentBlocks } from "../Contexts/OpponentBlocksContext.ts";
+import { usePitchAmount } from "../Contexts/PitchAmountContext.ts";
+import { usePitchCardsSelected } from "../Contexts/PitchCardsSelectedContext.ts";
+import { usePlayerBlocks } from "../Contexts/PlayerBlocksContext.ts";
+import { useSelectedCard } from "../Contexts/SelectedCardContext.ts"
+import { useTurnStep } from "../Contexts/TurnStepContext.ts";
 
 const FABCardComponent = (props) => {
     const card = props.card

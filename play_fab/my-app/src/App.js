@@ -1,24 +1,24 @@
+import { useState } from 'react';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import './App.css';
 import Hand from "./Classes/Hand";
-import GameScreenComponent from './Components/GameScreenComponent'
-import HomeScreenComponent from './Components/HomeScreenComponent'
+import { TurnStep } from "./Classes/TurnStep";
+import GameScreenComponent from './Components/GameScreenComponent';
+import HomeScreenComponent from './Components/HomeScreenComponent';
 import { AttackingCardContext } from './Contexts/AttackingCardContext.ts';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { OpponentAttack, OpponentAttackContext } from './Contexts/OpponentAttackContext.ts'
-import { useState } from 'react';
-import { PlayerTurnContext } from './Contexts/PlayerTurnContext'
-import { SelectedCardContext } from './Contexts/SelectedCardContext'
-import { TurnStepContext } from './Contexts/TurnStepContext'
-import { PitchCardsSelectedContext } from './Contexts/PitchCardsSelectedContext';
-import { PitchAmountContext } from './Contexts/PitchAmountContext'
-import { PlayerHandContext } from './Contexts/PlayerHandContext';
-import { OpponentHandContext } from './Contexts/OpponentHandContext';
-import { OpponentBlocksContext } from './Contexts/OpponentBlocksContext';
-import { TurnStep } from "./Classes/TurnStep"
-import { PlayerLifeContext } from './Contexts/PlayerLifeContext';
-import { OpponentLifeContext } from './Contexts/OpponentLifeContext'
-import { PlayerBlocksContext } from './Contexts/PlayerBlocksContext';
-import { STARTING_LIFE_TOTAL } from './Utils'
+import { OpponentAttack, OpponentAttackContext } from './Contexts/OpponentAttackContext.ts';
+import { OpponentBlocksContext } from './Contexts/OpponentBlocksContext.ts';
+import { OpponentHandContext } from './Contexts/OpponentHandContext.ts';
+import { OpponentLifeContext } from './Contexts/OpponentLifeContext.ts';
+import { PitchAmountContext } from './Contexts/PitchAmountContext.ts';
+import { PitchCardsSelectedContext } from './Contexts/PitchCardsSelectedContext.ts';
+import { PlayerBlocksContext } from './Contexts/PlayerBlocksContext.ts';
+import { PlayerHandContext } from './Contexts/PlayerHandContext.ts';
+import { PlayerLifeContext } from './Contexts/PlayerLifeContext.ts';
+import { PlayerTurnContext } from './Contexts/PlayerTurnContext.ts';
+import { SelectedCardContext } from './Contexts/SelectedCardContext.ts';
+import { TurnStepContext } from './Contexts/TurnStepContext.ts';
+import { STARTING_LIFE_TOTAL } from './Utils';
 
 // Home Page
 function App() {
