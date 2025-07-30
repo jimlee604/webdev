@@ -1,9 +1,10 @@
-import { useAttackingCard } from "../Contexts/AttackingCardContext"
-import { TurnStep } from "../Classes/TurnStep"
-import { BrowserView, MobileView } from 'react-device-detect';
+import { useAttackingCard } from "../Contexts/AttackingCardContext.ts"
+import { useOpponentAttack } from "../Contexts/OpponentAttackContext.ts";
 import { useOpponentBlocks } from "../Contexts/OpponentBlocksContext";
-import { useOpponentAttack } from "../Contexts/OpponentAttackContext";
+import { BrowserView, MobileView } from 'react-device-detect';
 import { usePlayerBlocks } from "../Contexts/PlayerBlocksContext";
+import { TurnStep } from "../Classes/TurnStep"
+
 
 const TapNextWrapper = (innerComponent) => {
     return (

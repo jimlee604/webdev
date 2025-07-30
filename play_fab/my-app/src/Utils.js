@@ -1,4 +1,4 @@
-import { OpponentAttack } from "./Contexts/OpponentAttackContext";
+import { OpponentAttack } from "./Contexts/OpponentAttackContext.ts";
 
 export const STARTING_LIFE_TOTAL = 10;
 
