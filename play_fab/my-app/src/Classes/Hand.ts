@@ -18,8 +18,8 @@ class Hand {
     static minCardBlock = 2;
     static maxCardBlock = 3;
 
-    private cards: Card[];
-    private player: boolean
+    public cards: Card[];
+    public player: boolean
 
     constructor(cards, player) {
         this.cards = cards;

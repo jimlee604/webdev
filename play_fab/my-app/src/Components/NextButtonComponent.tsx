@@ -13,7 +13,7 @@ import { usePlayerLife } from "../Contexts/PlayerLifeContext.ts";
 import { usePlayerTurn } from "../Contexts/PlayerTurnContext.ts";
 import { useSelectedCard } from "../Contexts/SelectedCardContext.ts";
 import { useTurnStep } from "../Contexts/TurnStepContext.ts";
-import { computeBlockIndices, computeOpponentAttacksAndPitches, computeTotalBlocks } from "../Utils";
+import { computeBlockIndices, computeOpponentAttacksAndPitches, computeTotalBlocks } from "../Utils.js";
 
 const NextButtonComponent = (props) => {
     const { selectedCardValue, setSelectedCardValue } = useSelectedCard();
@@ -134,11 +134,11 @@ const NextButtonComponent = (props) => {
                     const indexToRemove = newPlayerHand.cards.indexOf(card);
                     newPlayerHand.cards.splice(indexToRemove, 1);
                 }
-                // temporary: refill all hands
+                // TODO: don't refill all hands, code according to game rules
                 newPlayerHand.refill();
                 setPlayerBlocksValue(new Set());
                 setPlayerHandValue(newPlayerHand);
-                setOpponentAttackValue(new OpponentAttack(null, new Set()));
+                setOpponentAttackValue(new OpponentAttack(undefined, new Set()));
                 setPlayerTurnValue(true);
                 setTurnStepValue(TurnStep.PLAYER_TURN_START);
                 break;

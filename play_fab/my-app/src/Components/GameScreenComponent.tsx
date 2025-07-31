@@ -1,7 +1,7 @@
-import ActiveTurnComponent from "./ActiveTurnComponent"
-import FABCardComponent from "./FABCardComponent";
-import InstructionComponent from "./InstructionComponent";
-import NextButtonComponent from "./NextButtonComponent"
+import ActiveTurnComponent from "./ActiveTurnComponent.tsx"
+import FABCardComponent from "./FABCardComponent.tsx";
+import InstructionComponent from "./InstructionComponent.tsx";
+import NextButtonComponent from "./NextButtonComponent.tsx"
 import { usePlayerHand } from "../Contexts/PlayerHandContext.ts";
 import { usePlayerTurn } from "../Contexts/PlayerTurnContext.ts";
 import { useOpponentHand } from "../Contexts/OpponentHandContext.ts";
