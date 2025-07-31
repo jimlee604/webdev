@@ -1,4 +1,4 @@
-import { TurnStep } from "../Classes/TurnStep";
+import { TurnStep } from "../Classes/TurnStep.ts";
 import { useAttackingCard } from "../Contexts/AttackingCardContext.ts";
 import { useOpponentAttack } from "../Contexts/OpponentAttackContext.ts";
 import { useOpponentBlocks } from "../Contexts/OpponentBlocksContext.ts";

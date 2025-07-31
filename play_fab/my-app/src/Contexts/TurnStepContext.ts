@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { TurnStep } from "../Classes/TurnStep";
+import { TurnStep } from "../Classes/TurnStep.ts";
 
 // TODO: Change to enum
 export const TurnStepContext = createContext({turnStepValue: TurnStep.SELECT_ATTACK, setTurnStepValue:() => {}});

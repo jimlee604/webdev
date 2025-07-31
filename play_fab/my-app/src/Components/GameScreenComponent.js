@@ -7,7 +7,7 @@ import { usePlayerTurn } from "../Contexts/PlayerTurnContext.ts";
 import { useOpponentHand } from "../Contexts/OpponentHandContext.ts";
 import { useSelectedCard } from "../Contexts/SelectedCardContext.ts";
 import { useTurnStep } from "../Contexts/TurnStepContext.ts";
-import { TurnStep } from "../Classes/TurnStep";
+import { TurnStep } from "../Classes/TurnStep.ts";
 
 const GameScreenComponent = () => {
     const { playerTurnValue } = usePlayerTurn();

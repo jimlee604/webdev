@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import './App.css';
-import Hand from "./Classes/Hand";
-import { TurnStep } from "./Classes/TurnStep";
+import Hand from "./Classes/Hand.ts";
+import { TurnStep } from "./Classes/TurnStep.ts";
 import GameScreenComponent from './Components/GameScreenComponent';
 import HomeScreenComponent from './Components/HomeScreenComponent';
 import { AttackingCardContext } from './Contexts/AttackingCardContext.ts';

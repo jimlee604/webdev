@@ -1,5 +1,5 @@
-import Hand from "../Classes/Hand";
-import { TurnStep } from "../Classes/TurnStep";
+import Hand from "../Classes/Hand.ts";
+import { TurnStep } from "../Classes/TurnStep.ts";
 import { useAttackingCard } from "../Contexts/AttackingCardContext.ts";
 import { OpponentAttack, useOpponentAttack } from "../Contexts/OpponentAttackContext.ts";
 import { useOpponentBlocks } from "../Contexts/OpponentBlocksContext.ts";
