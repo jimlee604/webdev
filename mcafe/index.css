@@ -1,20 +1,15 @@
 .title {
-    margin-left: 2%;
+    margin-left: 20px;
     font-family: 'Papyrus';
     font-size: 40pt;
 }
 
 .description {
-    margin-left: 2%;
-    margin-right: 40pt;
+    margin-left: 20px;
     font-family: 'Courier New', Courier, monospace;
     font-size: 20pt;
     font-weight: bold;
-    width: 30vw;
-}
-
-.container img {
-   width: 100vw;
+    width: 780px;
 }
 
 .category_button {
@@ -45,6 +40,6 @@
 }
 
 .front_page_photo {
-    width: 300pt;
-    height: 600pt;
+    width: 400px;
+    height: 600px;
 }
